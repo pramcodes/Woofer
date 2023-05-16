@@ -26,23 +26,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <EditText
         android:id="@+id/uNameLoginView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
         android:layout_marginTop="84dp"
-        android:text="Username:"
+        android:hint="Username:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginView" />
+        app:layout_constraintTop_toBottomOf="@+id/loginView"
+        android:drawableLeft="@drawable/baseline_person_24"
+        android:drawablePadding="10dp"/>
 
-    <TextView
+
+    <EditText
         android:id="@+id/passwordLoginView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
         android:layout_marginTop="76dp"
-        android:text="Password:"
+        android:hint="Password:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uNameLoginView" />
+        app:layout_constraintTop_toBottomOf="@+id/uNameLoginView"
+        android:inputType="textPassword" />
 </androidx.constraintlayout.widget.ConstraintLayout>
