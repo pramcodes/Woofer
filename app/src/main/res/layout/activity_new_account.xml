@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".NewAccountActivity">
 
+    <EditText
+        android:id="@+id/lPassword3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="144dp"
+        android:hint="Password:"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fNameNewAccView" />
+
     <Button
         android:id="@+id/newAccBackButton"
         android:layout_width="wrap_content"
@@ -21,11 +32,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="144dp"
-        android:hint="Password"
+        android:layout_marginTop="224dp"
+        android:hint="Confirm assword:"
+        android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fNameNewAccView"
-        android:inputType="textPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/fNameNewAccView" />
 
     <TextView
         android:id="@+id/newAccView"
@@ -76,6 +87,8 @@
         android:text="Confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/lPassword"
+        app:layout_constraintVertical_bias="0.894" />
 </androidx.constraintlayout.widget.ConstraintLayout>

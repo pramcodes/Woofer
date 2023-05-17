@@ -21,15 +21,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
 
-                Button exitButton = (Button) findViewById(R.id.exitButton);
-                exitButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // TODO Auto-generated method stub
-                        finishAffinity();
-                        System.exit(0);
-                    }
-                });
+
             }
         });
 
