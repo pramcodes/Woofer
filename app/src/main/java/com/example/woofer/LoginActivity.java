@@ -18,11 +18,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void run()
             {
-                Button lBackButton = (Button)findViewById(R.id.loginBackButton);
-                lBackButton.setOnClickListener(new View.OnClickListener() {
+                Button signInButton = (Button)findViewById(R.id.signInLoginButton);
+                signInButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, NewAccountActivity.class);
                         startActivity(intent);
                     }
                 });

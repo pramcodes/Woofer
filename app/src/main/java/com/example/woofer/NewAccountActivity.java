@@ -17,11 +17,11 @@ public class NewAccountActivity extends AppCompatActivity {
             @Override
             public void run()
             {
-                Button bButton = (Button)findViewById(R.id.newAccBackButton);
-                bButton.setOnClickListener(new View.OnClickListener() {
+                Button loginButton = (Button)findViewById(R.id.newAccBackButton);
+                loginButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(NewAccountActivity.this, MainActivity.class);
+                        Intent intent = new Intent(NewAccountActivity.this, LoginActivity.class);
                         startActivity(intent);
                     }
                 });

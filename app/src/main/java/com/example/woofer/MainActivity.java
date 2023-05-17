@@ -18,22 +18,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run()
             {
-                Button loginButton = (Button)findViewById(R.id.loginButton);
-                loginButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                    }
-                });
-                Button nAccButton = (Button)findViewById(R.id.newAccButton);
-                nAccButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(MainActivity.this, NewAccountActivity.class);
-                        startActivity(intent);
-                    }
-                });
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+
                 Button exitButton = (Button) findViewById(R.id.exitButton);
                 exitButton.setOnClickListener(new View.OnClickListener() {
                     @Override
