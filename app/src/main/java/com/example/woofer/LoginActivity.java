@@ -26,6 +26,15 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+                Button exitButton = (Button) findViewById(R.id.loginExitButton);
+                exitButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // TODO Auto-generated method stub
+                        finishAffinity();
+                        System.exit(0);
+                    }
+                });
             }
         });
     }
