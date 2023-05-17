@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".NewAccountActivity">
 
+    <EditText
+        android:id="@+id/lPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="144dp"
+        android:hint="Password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fNameNewAccView"
+        android:inputType="textPassword" />
+
     <Button
         android:id="@+id/newAccBackButton"
         android:layout_width="wrap_content"
@@ -26,35 +37,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <EditText
         android:id="@+id/uNameNewAccView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
         android:layout_marginTop="68dp"
-        android:text="Username:"
+        android:hint="Username:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newAccView"
         android:drawableLeft="@drawable/baseline_person_24"
         android:drawablePadding="10dp"/>
 
-    <TextView
+    <EditText
         android:id="@+id/fNameNewAccView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
         android:layout_marginTop="52dp"
-        android:text="First Name:"
+        android:hint="First Name:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uNameNewAccView" />
 
-    <TextView
+    <EditText
         android:id="@+id/lNameNewAccView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
         android:layout_marginTop="52dp"
-        android:text="Last Name:"
+        android:hint="Last Name:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fNameNewAccView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
