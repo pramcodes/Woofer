@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
+    android:backgroundTint="#212323"
     tools:context=".NewAccountActivity">
 
     <EditText
@@ -12,8 +14,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
         android:layout_marginTop="144dp"
+        android:backgroundTint="#009688"
         android:hint="Password:"
         android:inputType="textPassword"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fNameNewAccView" />
 
@@ -33,8 +37,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
         android:layout_marginTop="224dp"
+        android:backgroundTint="#009688"
         android:hint="Confirm assword:"
         android:inputType="textPassword"
+        android:textColor="#E6E6E6"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fNameNewAccView" />
 
@@ -44,6 +51,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="112dp"
         android:text="Please fill in your information below."
+        android:textColor="#009688"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -54,11 +64,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
         android:layout_marginTop="68dp"
-        android:hint="Username:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newAccView"
+        android:backgroundTint="#009688"
         android:drawableLeft="@drawable/baseline_person_24"
-        android:drawablePadding="10dp"/>
+        android:drawablePadding="10dp"
+        android:hint="Username:"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newAccView" />
 
     <EditText
         android:id="@+id/fNameNewAccView"
@@ -66,7 +79,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
         android:layout_marginTop="52dp"
+        android:backgroundTint="#009688"
         android:hint="First Name:"
+        android:textColor="#2196F3"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uNameNewAccView" />
 
@@ -76,7 +92,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
         android:layout_marginTop="52dp"
+        android:backgroundTint="#009688"
         android:hint="Last Name:"
+        android:textColor="#9C27B0"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fNameNewAccView" />
 
@@ -84,6 +103,8 @@
         android:id="@+id/newAccConfirmButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#0C1E1C"
+        android:backgroundTint="@color/teal_200"
         android:text="Confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
