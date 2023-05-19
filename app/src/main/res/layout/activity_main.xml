@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- tweet_item.xml -->
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/howl"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -11,6 +11,7 @@
 
     <!-- User profile section -->
     <LinearLayout
+        android:id="@+id/bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#A2B027"
@@ -48,6 +49,7 @@
 
     <!-- Actions section -->
     <LinearLayout
+        android:id="@+id/texts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#5B6861"
@@ -67,13 +69,13 @@
             android:id="@+id/comment_button"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="8dp" />
 
 
         <ImageView
             android:id="@+id/share_button"
             android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_height="24dp"/>
 
 
     </LinearLayout>
