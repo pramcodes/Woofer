@@ -22,7 +22,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/profile_placeholder"
+
             app:srcCompat="@drawable/baseline_person_24" />
 
         <TextView
@@ -60,7 +60,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="8dp"
-            android:src="@drawable/heart_icon"
+
             app:srcCompat="?attr/actionModeShareDrawable" />
 
         <ImageView
@@ -68,13 +68,13 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="8dp"
-            android:src="@drawable/comment_icon" />
+
 
         <ImageView
             android:id="@+id/share_button"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/share_icon" />
+
 
     </LinearLayout>
 
