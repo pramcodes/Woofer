@@ -18,8 +18,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void run()
             {
-                Button signInButton = (Button)findViewById(R.id.signInLoginButton);
-                signInButton.setOnClickListener(new View.OnClickListener() {
+                Button signUpButton = (Button)findViewById(R.id.signUpLoginButton);
+                signUpButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(LoginActivity.this, SignUpActivity1.class);

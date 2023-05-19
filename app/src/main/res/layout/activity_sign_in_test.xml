@@ -118,8 +118,8 @@
             android:layout_marginTop="20dp"
             android:hint="Password:"
             app:passwordToggleEnabled="true"
-            app:layout_constraintTop_toBottomOf="@id/editTextEmail"
-            app:layout_constraintStart_toStartOf="@id/editTextEmail"
+            app:layout_constraintTop_toBottomOf="@id/textViewDate"
+            app:layout_constraintStart_toStartOf="@id/textViewDate"
             app:layout_constraintVertical_bias="7">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -163,6 +163,17 @@
             android:text="Confirm"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/newAccountConfirmPassword" />
+
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="Select birthdate"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="@id/editTextEmail"
+            app:layout_constraintTop_toBottomOf="@id/editTextEmail" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
