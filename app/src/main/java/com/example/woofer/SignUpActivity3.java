@@ -30,7 +30,7 @@ public class SignUpActivity3 extends AppCompatActivity {
                 continueButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(SignUpActivity3.this, SignUpActivity3.class);
+                        Intent intent = new Intent(SignUpActivity3.this, User.class);
                         startActivity(intent);
                     }
                 });
