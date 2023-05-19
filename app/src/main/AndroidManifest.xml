@@ -14,10 +14,16 @@
         android:theme="@style/Theme.Woofer"
         tools:targetApi="31">
         <activity
+            android:name=".SignUpActivity3"
+            android:exported="false" />
+        <activity
+            android:name=".SignUpActivity2"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".NewAccountActivity"
+            android:name=".SignUpActivity1"
             android:exported="false" />
         <activity
             android:name=".User"
