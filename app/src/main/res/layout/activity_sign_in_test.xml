@@ -43,7 +43,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:text="Back"
+            android:text="Return to login"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="#1589FF"
+            style="@style/Widget.AppCompat.Button.Borderless"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="112dp"
             android:text="Please fill in your information below."
-            android:textColor="#009688"
+            android:textColor="#1B03A3"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -125,6 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:hint="Password:"
+            app:hintTextColor="@color/white"
             app:passwordToggleEnabled="true"
             app:layout_constraintTop_toBottomOf="@id/textViewDate"
             app:layout_constraintStart_toStartOf="@id/textViewDate"
@@ -132,6 +137,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/newAccPasswordEditText"
+                android:textColorHint="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ems="15"
@@ -146,6 +152,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:hint="Confirm Password:"
+            app:hintTextColor="@color/white"
             app:passwordToggleEnabled="true"
             app:layout_constraintTop_toBottomOf="@id/newAccountPassword"
             app:layout_constraintStart_toStartOf="@id/newAccountPassword"
@@ -168,9 +175,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="116dp"
             android:layout_marginTop="20dp"
-            android:background="#0C1E1C"
-            android:backgroundTint="@color/teal_200"
+            android:background="@drawable/custom_sign_up_button"
+            android:textColor="@color/white"
             android:text="Confirm"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/newAccountConfirmPassword" />
 
