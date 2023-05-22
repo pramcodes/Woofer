@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign up"
+        android:background="@drawable/custom_sign_up_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"
@@ -25,7 +26,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
-        android:textColor="@color/teal_200"
+        android:textColor="#1B03A3"
+        android:textStyle="bold"
+        android:textSize="18sp"
         android:text="Please enter your username and password below."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,9 +68,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:background="#000000"
-            android:backgroundTint="#009688"
+            android:backgroundTint="#009EFD"
             android:ems="15"
             android:inputType="textPassword"
             android:textColor="@color/white"
@@ -85,6 +87,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="32dp"
         android:text="Exit"
+        android:background="@drawable/custom_sign_up_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -94,6 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="112dp"
         android:text="Login"
+        android:background="@drawable/custom_sign_up_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
