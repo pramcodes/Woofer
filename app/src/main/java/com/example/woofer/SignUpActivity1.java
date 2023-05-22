@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Calendar;
@@ -28,14 +29,27 @@ public class SignUpActivity1 extends AppCompatActivity {
     EditText username, fName, lName, email;
     Button confirm;
     TextView date;
-    TextInputLayout password, confirmPassword;
-    private boolean isBirthdateSelected = false;
+
+    boolean isDateSelected = false;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_sign_up1);
         setContentView(R.layout.activity_sign_in_test);
+
+
+        //Password validation
+        TextInputLayout passwordLayout = findViewById(R.id.newAccountPassword);
+        TextInputEditText passwordEditText = findViewById(R.id.newAccPasswordEditText);
+
+        TextInputLayout confirmPasswordLayout = findViewById(R.id.newAccountConfirmPassword);
+        TextInputEditText confirmPasswordEditText = findViewById(R.id.newAccConfirmPasswordEditText);
+
+        Button submitButton = findViewById(R.id.newAccConfirmButton);
 
         //for datePicker
         displayDate= (TextView) findViewById(R.id.textViewDate);
@@ -63,6 +77,8 @@ public class SignUpActivity1 extends AppCompatActivity {
                 Log.d(TAG, "onDateSet: mm/dd/yyyy: " + month + "/" + day + "/" + year);
                 String date=  month + "/" + day + "/" + year;
                 displayDate.setText(date);
+
+                isDateSelected = true;
             }
         };
         //Return to login page
@@ -85,6 +101,9 @@ public class SignUpActivity1 extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String password = passwordEditText.getText().toString();
+                String confirmPassword = confirmPasswordEditText.getText().toString();
+
                 if (username.length()==0){
                     username.setError("Enter username");
                     Toast.makeText(SignUpActivity1.this, "Please fill in required fields", Toast.LENGTH_SHORT).show();
@@ -101,24 +120,27 @@ public class SignUpActivity1 extends AppCompatActivity {
                     email.setError("Enter email");
                     Toast.makeText(SignUpActivity1.this, "Please fill in required fields", Toast.LENGTH_SHORT).show();
                 }
-                /*
-                 else if (!isBirthdateSelected) {
-                    displayDate.setError("Select your birthdate");
-                    Toast.makeText(SignUpActivity1.this, "Please fill in required fields", Toast.LENGTH_SHORT).show();
+                else if (!isDateSelected) {
+                    // Date is not selected, show error message
+                    displayDate.setError("Please select a date"); }
+
+                else if (!password.equals(confirmPassword)) {
+                    confirmPasswordLayout.setError("Passwords do not match");
                 }
 
-                 else if (password.getEditText().length() == 0) {
-                    password.setError("Enter password");
-                    Toast.makeText(SignUpActivity1.this, "Please fill in required fields", Toast.LENGTH_SHORT).show();
+                else if (password.length() != 8) {
+                    passwordLayout.setError("Password must be 8 characters");
                 }
-                else if (confirmPassword.getEditText().length() == 0) {
-                    confirmPassword.setError("Enter password");
-                    Toast.makeText(SignUpActivity1.this, "Please fill in required fields", Toast.LENGTH_SHORT).show();
-                }
-                 */
 
                 else {
                     Toast.makeText(SignUpActivity1.this, "Works :D", Toast.LENGTH_SHORT).show();
+                    username.setError(null);
+                    fName.setError(null);
+                    lName.setError(null);
+                    email.setError(null);
+                    displayDate.setError(null);
+                    confirmPasswordLayout.setError(null);
+                    passwordLayout.setError(null);
                 }
             }
         });
@@ -126,6 +148,7 @@ public class SignUpActivity1 extends AppCompatActivity {
 
     }
 }
+
 
 //Liam's code
 /*
