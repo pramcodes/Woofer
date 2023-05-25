@@ -37,17 +37,18 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:id="@+id/newAccBackButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:text="Return to login"
             android:textAllCaps="false"
-            android:textStyle="bold"
             android:textColor="#1589FF"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
