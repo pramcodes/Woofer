@@ -17,9 +17,6 @@
             android:name=".HomePageActivity"
             android:exported="false" />
         <activity
-            android:name=".HowlActivity"
-            android:exported="false" />
-        <activity
             android:name=".SignUpActivity3"
             android:exported="false" />
         <activity
