@@ -16,6 +16,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HowlActivity extends AppCompatActivity {
 
@@ -75,12 +77,17 @@ public class HowlActivity extends AppCompatActivity {
 
     private void loadIntoListView(String json) throws JSONException {
         JSONArray jsonArray = new JSONArray(json);
-        String[] tweetThings = new String[jsonArray.length()];
+        List<HowlItem> tweetItems = new ArrayList<>();
+
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject obj = jsonArray.getJSONObject(i);
-            tweetThings[i] = obj.getString("howl");
+            String userId = obj.getString("user_id");
+            String timestamp = obj.getString("created_at");
+            String howl = obj.getString("howl");
+            tweetItems.add(new HowlItem(userId, timestamp, howl));
         }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tweetThings);
-        listView.setAdapter(arrayAdapter);
+
+        TweetAdapter tweetAdapter = new TweetAdapter(this, R.layout.howl_layout, tweetItems);
+        listView.setAdapter(tweetAdapter);
     }
 }
