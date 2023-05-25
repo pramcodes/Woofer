@@ -1,11 +1,11 @@
 package com.example.woofer;
 
-public class HowlItem {
+public class WoofItem {
     private String userId;
     private String timestamp;
     private String howl;
 
-    public HowlItem(String userId, String timestamp, String howl) {
+    public WoofItem(String userId, String timestamp, String howl) {
         this.userId = userId;
         this.timestamp = timestamp;
         this.howl = howl;

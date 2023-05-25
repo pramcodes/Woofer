@@ -3,38 +3,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvUserId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:textAppearanceLarge"
-            android:textStyle="bold"
-            android:layout_alignParentStart="true" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvTimestamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="#808080"
-            android:layout_alignParentEnd="true" />
+            android:textColor="#808080" />
 
         <TextView
             android:id="@+id/tvHowl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:layout_below="@id/tvUserId"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="8dp" />
+            android:textAppearance="?android:textAppearanceMedium" />
 
-    </RelativeLayout>
-
-
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
