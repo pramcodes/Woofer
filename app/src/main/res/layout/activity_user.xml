@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@color/cardview_dark_background"
     android:padding="16dp">
 
     <ImageView
@@ -24,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="joseph stalin"
+        android:text="Username"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -49,7 +50,7 @@
 
     <Button
         android:id="@+id/userInfoButton"
-        android:layout_width="match_parent"
+        android:layout_width="379dp"
         android:layout_height="wrap_content"
         android:text="user info" />
 
