@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -58,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
             public void run()
             {
                 Button LoginButton = (Button) findViewById(R.id.loginLoginButton) ;
-                LoginButton.setOnClickListener(new View.OnClickListener() {
+                /*LoginButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         //stuff for when login button is clicked
@@ -88,6 +89,13 @@ public class LoginActivity extends AppCompatActivity {
                                                 Intent intent = new Intent(LoginActivity.this, User.class);
                                                 startActivity(intent);
                                             }
+                                            else {
+                                                CharSequence text = "Incorrect password";
+                                                int duration = Toast.LENGTH_SHORT;
+
+                                                Toast toast = Toast.makeText(getApplicationContext() , text, duration);
+                                                toast.show();
+                                            }
 
                                         }
                                     });
@@ -95,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         });
                     }
-                });
+                });*/
 
                 Button signUpButton = (Button)findViewById(R.id.signUpLoginButton);
                 signUpButton.setOnClickListener(new View.OnClickListener() {
