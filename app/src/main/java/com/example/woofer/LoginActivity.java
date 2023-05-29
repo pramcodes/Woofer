@@ -58,8 +58,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void run()
             {
-                Button LoginButton = (Button) findViewById(R.id.loginLoginButton) ;
-                /*LoginButton.setOnClickListener(new View.OnClickListener() {
+                /*Button LoginButton = (Button) findViewById(R.id.loginLoginButton) ;
+                LoginButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         //stuff for when login button is clicked
