@@ -31,7 +31,7 @@
     </RelativeLayout>
 
     <EditText
-        android:id="@+id/et_tweet_content"
+        android:id="@+id/etWoofContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
@@ -40,10 +40,10 @@
         android:textSize="18sp" />
 
     <Button
-        android:id="@+id/btn_tweet"
+        android:id="@+id/btnWoof"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_tweet_content"
+        android:layout_below="@id/etWoofContent"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -53,13 +53,13 @@
         android:id="@+id/btnChooseImage"
         android:layout_width="52dp"
         android:layout_height="52dp"
-        android:layout_below="@id/et_tweet_content"
+        android:layout_below="@id/etWoofContent"
         android:src="@drawable/baseline_image_24"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="13dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="244dp"
-        android:layout_toStartOf="@+id/btn_tweet"
+        android:layout_toStartOf="@+id/btnWoof"
         android:background="?attr/selectableItemBackgroundBorderless"/>
 
 </RelativeLayout>
