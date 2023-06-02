@@ -29,13 +29,11 @@ public class LoginActivity extends AppCompatActivity {
 
     //JSON processing method
     public String processJSON(String json, String FieldToReturn){
+        //ArrayList<String>S = new ArrayList<String>();
         String out = "";
         try {
-            JSONArray all = new JSONArray(json);
-            for (int i=0; i<all.length(); i++){
-                JSONObject item=all.getJSONObject(i);
-                out = item.getString(FieldToReturn);
-            }
+            JSONObject all = new JSONObject(json);
+            out = all.getString(FieldToReturn);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -89,9 +87,9 @@ public class LoginActivity extends AppCompatActivity {
                                     LoginActivity.this.runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            String Check = processJSON(resp,username);
+                                            String pswrd = processJSON(resp,"password");
                                             //compares user's entered password with password stored on the database
-                                            if (Check.equals(passwrd)){
+                                            if (pswrd.equals(passwrd)){
                                                 Intent intent = new Intent(LoginActivity.this, User.class);
                                                 startActivity(intent);
                                             }
