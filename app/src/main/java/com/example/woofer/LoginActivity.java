@@ -19,6 +19,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -27,19 +28,18 @@ import java.util.ArrayList;
 public class LoginActivity extends AppCompatActivity {
 
     //JSON processing method
-    public ArrayList<String> processJSON(String json, String FieldToReturn){
-        ArrayList<String>S = new ArrayList<String>();
+    public String processJSON(String json, String FieldToReturn){
+        String out = "";
         try {
             JSONArray all = new JSONArray(json);
             for (int i=0; i<all.length(); i++){
                 JSONObject item=all.getJSONObject(i);
-                String Uname = item.getString(FieldToReturn);
-                S.add(Uname);
+                out = item.getString(FieldToReturn);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return S;
+        return out;
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,21 +50,29 @@ public class LoginActivity extends AppCompatActivity {
         OkHttpClient client = new OkHttpClient();
         EditText Uname = (EditText) findViewById(R.id.uNameLoginView) ;
         TextInputEditText Upasswrd = (TextInputEditText) findViewById(R.id.Password_Text) ;
-        Request request = new Request.Builder()
+        HttpUrl.Builder urlBuilder = HttpUrl.parse("https://lamp.ms.wits.ac.za/home/s2596852/users.php").newBuilder();
+        /*Request request = new Request.Builder()
                 .url("https://lamp.ms.wits.ac.za/home/s2596852/users.php")
                 .build();
-
+        */
         LoginActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run()
             {
-                /*Button LoginButton = (Button) findViewById(R.id.loginLoginButton) ;
+                Button LoginButton = (Button) findViewById(R.id.loginLoginButton) ;
                 LoginButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         //stuff for when login button is clicked
                         String username = Uname.getText().toString();
                         String passwrd = Upasswrd.getText().toString();
+                        //insert validation here on username and passwrd
+                        urlBuilder.addQueryParameter("username",username);
+                        String url = urlBuilder.build().toString();
+
+                        Request request = new Request.Builder()
+                                .url(url)
+                                .build();
                         client.newCall(request).enqueue(new Callback() {
                             @Override
                             public void onFailure(Call call, IOException e) {
@@ -77,15 +85,13 @@ public class LoginActivity extends AppCompatActivity {
                                     throw new IOException("Unexpected code " + response);
                                 }else {
                                     final String resp = response.body().string();
-                                    ArrayList<String>S = new ArrayList<String>();
 
                                     LoginActivity.this.runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            ArrayList<String>S = new ArrayList<String>();
-                                            S = processJSON(resp,username);
+                                            String Check = processJSON(resp,username);
                                             //compares user's entered password with password stored on the database
-                                            if (S.get(0).equals(passwrd)){
+                                            if (Check.equals(passwrd)){
                                                 Intent intent = new Intent(LoginActivity.this, User.class);
                                                 startActivity(intent);
                                             }
@@ -103,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         });
                     }
-                });*/
+                });
 
                 Button signUpButton = (Button)findViewById(R.id.signUpLoginButton);
                 signUpButton.setOnClickListener(new View.OnClickListener() {
