@@ -89,12 +89,12 @@ public class LoginActivity extends AppCompatActivity {
                                         public void run() {
                                             String pswrd = processJSON(resp,"password");
                                             //compares user's entered password with password stored on the database
-                                            if (pswrd.equals(passwrd)){
+                                            if ((pswrd.equals(passwrd)) && (pswrd != "")){
                                                 Intent intent = new Intent(LoginActivity.this, User.class);
                                                 startActivity(intent);
                                             }
                                             else {
-                                                CharSequence text = "Incorrect password";
+                                                CharSequence text = "Incorrect password or username";
                                                 int duration = Toast.LENGTH_SHORT;
 
                                                 Toast toast = Toast.makeText(getApplicationContext() , text, duration);
