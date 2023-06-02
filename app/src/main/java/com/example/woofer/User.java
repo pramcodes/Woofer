@@ -26,7 +26,8 @@ public class User extends AppCompatActivity {
         setContentView(R.layout.activity_user);
 
         // Initialize the objectImageView
-        objectImageView = findViewById(R.id.profile_image);
+        objectImageView = findViewById(R.id.profilePic);
+        /*
         User.this.runOnUiThread(new Runnable() {
             @Override
             public void run()
@@ -41,7 +42,9 @@ public class User extends AppCompatActivity {
                 });
 
             }
-        });
+        });/*
+
+         */
     }
     // profile picture things
     public void chooseImage(View objectView) {
