@@ -18,6 +18,10 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.Calendar;
 
 public class SignUpActivity1 extends AppCompatActivity {
@@ -32,9 +36,20 @@ public class SignUpActivity1 extends AppCompatActivity {
 
     boolean isDateSelected = false;
 
+    public String CheckName(String Unam){
 
+        JSONObject n = new JSONObject();
+        try {
+            n.put("username",Unam);
+        }catch (JSONException e){
+            Toast.makeText(SignUpActivity1.this,"could not make JSON n", Toast.LENGTH_SHORT).show();
+        }
+        Requests UniqName = new Requests(n, "https://lamp.ms.wits.ac.za/home/s2596852/checkUser.php");
 
+        return UniqName.getRequest();
+    }
 
+    private static Boolean Flag = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +90,7 @@ public class SignUpActivity1 extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month= month+1;
                 Log.d(TAG, "onDateSet: mm/dd/yyyy: " + month + "/" + day + "/" + year);
-                String date=  month + "/" + day + "/" + year;
+                String date=  month +"" + day+"" + year +"";
                 displayDate.setText(date);
 
                 isDateSelected = true;
@@ -98,41 +113,60 @@ public class SignUpActivity1 extends AppCompatActivity {
         email=findViewById(R.id.editTextEmail);
         confirm= findViewById(R.id.newAccConfirmButton);
 
+        String Uname = username.getText().toString();
+
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                String Uname = username.getText().toString();
+                String Resp = CheckName(Uname);
+                if (Resp.equals("Username already exists")){
+                    Toast.makeText(SignUpActivity1.this,"Username taken, please try again", Toast.LENGTH_SHORT).show();
+                    username.setError("Choose a different Username");
+                }
+                else if (Resp.equals("Username does not exist")){
+                    Flag = true;
+                }
+
                 String password = passwordEditText.getText().toString();
                 String confirmPassword = confirmPasswordEditText.getText().toString();
 
                 if (username.length()==0){
                     username.setError("Enter username");
                     Toast.makeText(SignUpActivity1.this, "Please fill in required fields", Toast.LENGTH_SHORT).show();
+                    Flag = false;
                 }
                 else if (fName.length()==0) {
                     fName.setError("Enter first name");
                     Toast.makeText(SignUpActivity1.this, "Please fill in required fields", Toast.LENGTH_SHORT).show();
+                    Flag = false;
                 }
                 else if (lName.length()==0) {
                     lName.setError("Enter last name");
                     Toast.makeText(SignUpActivity1.this, "Please fill in required fields", Toast.LENGTH_SHORT).show();
+                    Flag = false;
                 }
                 else if (email.length()==0) {
                     email.setError("Enter email");
                     Toast.makeText(SignUpActivity1.this, "Please fill in required fields", Toast.LENGTH_SHORT).show();
+                    Flag = false;
                 }
                 else if (!isDateSelected) {
                     // Date is not selected, show error message
-                    displayDate.setError("Please select a date"); }
-
+                    displayDate.setError("Please select a date");
+                    Flag = false;
+                }
                 else if (!password.equals(confirmPassword)) {
                     confirmPasswordLayout.setError("Passwords do not match");
+                    Flag = false;
+                }
+                else if (password.length() < 8) {
+                    passwordLayout.setError("Password must be greater than 8 characters");
+                    Flag = false;
                 }
 
-                else if (password.length() != 8) {
-                    passwordLayout.setError("Password must be 8 characters");
-                }
-
-                else {
+                else if (Flag == true){
                     Toast.makeText(SignUpActivity1.this, "Works :D", Toast.LENGTH_SHORT).show();
                     username.setError(null);
                     fName.setError(null);
@@ -141,11 +175,32 @@ public class SignUpActivity1 extends AppCompatActivity {
                     displayDate.setError(null);
                     confirmPasswordLayout.setError(null);
                     passwordLayout.setError(null);
+                    Flag = true;
+
+
+                    JSONObject obj = new JSONObject();
+                    try{
+                        obj.put("username",username.getText().toString());
+                        obj.put("fname",fName.getText().toString());
+                        obj.put("lname",lName.getText().toString());
+                        obj.put("password",password);
+                        obj.put("email",email.getText().toString());
+                        obj.put("DOB",displayDate.getText().toString());
+                    }catch (JSONException e) {
+                        Toast.makeText(SignUpActivity1.this,"could not make JSON obj", Toast.LENGTH_SHORT).show();
+                    }
+                    Requests insert = new Requests(obj,"https://lamp.ms.wits.ac.za/home/s2596852/insertUser.php");
+
+                    String msg = null;
+                    try {
+                        msg = insert.addDataToDatabase();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    Toast.makeText(SignUpActivity1.this,msg , Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
     }
 }
 

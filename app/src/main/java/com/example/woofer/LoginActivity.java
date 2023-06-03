@@ -29,7 +29,6 @@ public class LoginActivity extends AppCompatActivity {
 
     //JSON processing method
     public String processJSON(String json, String FieldToReturn){
-        //ArrayList<String>S = new ArrayList<String>();
         String out = "";
         try {
             JSONObject all = new JSONObject(json);
@@ -48,11 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         OkHttpClient client = new OkHttpClient();
         EditText Uname = (EditText) findViewById(R.id.uNameLoginView) ;
         TextInputEditText Upasswrd = (TextInputEditText) findViewById(R.id.Password_Text) ;
-        HttpUrl.Builder urlBuilder = HttpUrl.parse("https://lamp.ms.wits.ac.za/home/s2596852/users.php").newBuilder();
-        /*Request request = new Request.Builder()
-                .url("https://lamp.ms.wits.ac.za/home/s2596852/users.php")
-                .build();
-        */
+
         LoginActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run()
@@ -65,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                         String username = Uname.getText().toString();
                         String passwrd = Upasswrd.getText().toString();
                         //insert validation here on username and passwrd
+                        HttpUrl.Builder urlBuilder = HttpUrl.parse("https://lamp.ms.wits.ac.za/home/s2596852/users.php").newBuilder();
                         urlBuilder.addQueryParameter("username",username);
                         String url = urlBuilder.build().toString();
 
