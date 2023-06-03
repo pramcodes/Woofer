@@ -188,7 +188,7 @@ public class SignUpActivity1 extends AppCompatActivity {
                     int age = currentYear - selectedYear;
 
                     if (currentMonth < selectedMonth || (currentMonth == selectedMonth && currentDay < selectedDay)) {
-                        age--; // Adjust age if the current date is before the selected birthdate
+                        age--; //Adjust age if the current date is before the selected birthdate
                     }
 
                     if (age < 13) {
