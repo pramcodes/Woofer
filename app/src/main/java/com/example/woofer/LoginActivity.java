@@ -60,6 +60,28 @@ public class LoginActivity extends AppCompatActivity {
                         String username = Uname.getText().toString();
                         String passwrd = Upasswrd.getText().toString();
                         //insert validation here on username and passwrd
+/*                        JSONObject objName = new JSONObject();
+                        try {
+                            objName.put("username",username);
+                        } catch (JSONException e) {
+                            Toast.makeText(LoginActivity.this, "could not make JSON objName", Toast.LENGTH_SHORT).show();
+                        }
+                        Requests CheckPsswrd = new Requests(objName, "https://lamp.ms.wits.ac.za/home/s2596852/user.php");
+                        String pswrd = CheckPsswrd.getRequest();
+                        //compares user's entered password with password stored on the database
+                        if ((pswrd.equals(passwrd)) && (pswrd != "")){
+                            Intent intent = new Intent(LoginActivity.this, User.class);
+                            startActivity(intent);
+                        }
+                        else {
+                            CharSequence text = "Incorrect password or username";
+                            int duration = Toast.LENGTH_SHORT;
+
+                            Toast toast = Toast.makeText(getApplicationContext() , text, duration);
+                            toast.show();
+                        }*/
+
+
                         HttpUrl.Builder urlBuilder = HttpUrl.parse("https://lamp.ms.wits.ac.za/home/s2596852/users.php").newBuilder();
                         urlBuilder.addQueryParameter("username",username);
                         String url = urlBuilder.build().toString();

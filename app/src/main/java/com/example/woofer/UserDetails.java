@@ -3,46 +3,62 @@ package com.example.woofer;
 import java.util.Date;
 
 public class UserDetails {
-    String  Uname, Fname , Lname , password, email;
-    Date DOB ;
-    int Uid ;
+    private static int userId;
+    private static String username;
+    private static String firstName;
+    private static String lastName;
+    private static String email;
+    private static String dateOfBirth;
 
-    public  UserDetails(int ID ,String alias,String name ,String surname, String passcode, String mail , Date Birthday  ){
-        Uname = alias;
-        Fname = name;
-        Lname = surname;
-        Uid = ID;
-        password = passcode;
-        email = mail ;
-        DOB = Birthday;
+    public UserDetails() {
+
     }
 
-    public int getUid(){
-        return Uid;
-    }
-    public String geUFName(){
-        return Uname;
+    public static int getUserId() {
+        return userId;
     }
 
-    public String getFName(){
-        return Fname;
+    public static String getUsername() {
+        return username;
     }
 
-    public String getLName(){
-        return Lname;
+    public static String getFirstName() {
+        return firstName;
     }
 
-    public String getPassword(){
-        return password;
+    public static String getLastName() {
+        return lastName;
     }
 
-    public String getEmail(){
+    public static String getEmail() {
         return email;
     }
 
-    public Date getDOB(){
-        return DOB;
+    public static String getDateOfBirth() {
+        return dateOfBirth;
     }
 
+    public static void getUserId(int id) {
+         userId = id;
+    }
 
+    public static void setUsername(String uname) {
+        username = uname;
+    }
+
+    public static void  setFirstName(String Fname) {
+        firstName = Fname;
+    }
+
+    public static void getLastName(String LName) {
+        lastName = LName;
+    }
+
+    public static void getEmail(String mail) {
+        email = mail;
+    }
+
+    public static void  getDateOfBirth(String DOB) {
+        dateOfBirth = DOB;
+    }
 }

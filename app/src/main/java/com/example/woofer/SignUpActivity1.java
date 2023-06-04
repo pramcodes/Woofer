@@ -24,6 +24,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class SignUpActivity1 extends AppCompatActivity {
 
@@ -36,14 +39,26 @@ public class SignUpActivity1 extends AppCompatActivity {
     TextView date;
 
     boolean isDateSelected = false;
+    String UDOB = "";
+
+    private static String escapeSpecialCharacters(String input) {
+        input = input.replace("\\", "\\\\"); // Replace backslash with double backslash
+        input = input.replace("\"", "\\\""); // Replace double quotes with escaped double quotes
+        input = input.replace("/", "\\/"); // Replace forward slash with escaped forward slash
+        input = input.replace("@", "\\@"); // Replace @ with escaped @
+        // Add any additional character replacements if needed
+
+        return input;
+    }
 
     public String CheckName(String Unam){
 
-        JSONObject n = new JSONObject();
+        Map<String, Object> n = new HashMap<>();
+
         try {
-            n.put("username",Unam);
-        }catch (JSONException e){
-            Toast.makeText(SignUpActivity1.this,"could not make JSON n", Toast.LENGTH_SHORT).show();
+            n.put("username", username.getText().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         Requests UniqName = new Requests(n, "https://lamp.ms.wits.ac.za/home/s2596852/checkUser.php");
 
@@ -86,14 +101,14 @@ public class SignUpActivity1 extends AppCompatActivity {
                 datePicker.show();
             }
         });
+
         dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month= month+1;
-                Log.d(TAG, "onDateSet: mm/dd/yyyy: " + month + "/" + day + "/" + year);
-                String date=  month +"" + day+"" + year +"";
-                displayDate.setText(date);
-
+                Log.d(TAG, "onDateSet: yyyy/mm/dd: " +year + "/" +  month + "/" + day);
+                UDOB =  year  +"/" + month+"/" + day;
+                displayDate.setText(UDOB);
                 isDateSelected = true;
             }
         };
@@ -130,6 +145,7 @@ public class SignUpActivity1 extends AppCompatActivity {
                 if (Resp.equals("Username already exists")) {
                     Toast.makeText(SignUpActivity1.this, "Username taken, please try again", Toast.LENGTH_SHORT).show();
                     username.setError("Choose a different Username");
+                    Flag = false;
                 } else if (Resp.equals("Username does not exist")) {
                     Flag = true;
                 }
@@ -185,9 +201,9 @@ public class SignUpActivity1 extends AppCompatActivity {
                     int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
 
                     String[] selectedDateParts = displayDate.getText().toString().split("/");
-                    int selectedMonth = Integer.parseInt(selectedDateParts[0]);
+                    int selectedYear = Integer.parseInt(selectedDateParts[0]);
                     int selectedDay = Integer.parseInt(selectedDateParts[1]);
-                    int selectedYear = Integer.parseInt(selectedDateParts[2]);
+                    int selectedMonth = Integer.parseInt(selectedDateParts[2]);
 
                     int age = currentYear - selectedYear;
 
@@ -200,7 +216,7 @@ public class SignUpActivity1 extends AppCompatActivity {
                         displayDate.setError("You must be 13 years or older");
                         Flag = false;
                     }
-//add more password validations?
+                    //add more password validations?
 
                     if (!password.equals(confirmPassword)) {
                         confirmPasswordLayout.setError("Passwords do not match");
@@ -220,25 +236,21 @@ public class SignUpActivity1 extends AppCompatActivity {
                         Flag = true;
 
 
-                        JSONObject obj = new JSONObject();
-                        try {
-                            obj.put("username", username.getText().toString());
-                            obj.put("fname", fName.getText().toString());
-                            obj.put("lname", lName.getText().toString());
-                            obj.put("password", password);
-                            obj.put("email", email.getText().toString());
-                            obj.put("DOB", displayDate.getText().toString());
-                        } catch (JSONException e) {
-                            Toast.makeText(SignUpActivity1.this, "could not make JSON obj", Toast.LENGTH_SHORT).show();
-                        }
-                        Requests insert = new Requests(obj, "https://lamp.ms.wits.ac.za/home/s2596852/insertUser.php");
+                        Map<String, Object> map = new HashMap<>();
 
-                        String msg = null;
                         try {
-                            msg = insert.addDataToDatabase();
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
+                            map.put("username", username.getText().toString());
+                            map.put("fname", fName.getText().toString());
+                            map.put("lname", lName.getText().toString());
+                            map.put("password", password);
+                            map.put("email",email.getText().toString());
+                            map.put("DOB", UDOB);
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
+                        Requests insert = new Requests(map, "https://lamp.ms.wits.ac.za/home/s2596852/insertUser.php");
+
+                        String  msg = insert.postRequest();
                         Toast.makeText(SignUpActivity1.this, msg, Toast.LENGTH_SHORT).show();
                     }
                 }
