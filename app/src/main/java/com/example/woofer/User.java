@@ -21,6 +21,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.woofer.R;
+import com.example.woofer.RequestHandler;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -28,9 +31,9 @@ import java.net.URL;
 import java.util.HashMap;
 
 public class User extends AppCompatActivity implements View.OnClickListener{
-    TextView editTextId;
+    EditText editTextId;
 
-    public static final String UPLOAD_URL = "https://lamp.ms.wits.ac.za/home/s2572730/upload2.php";
+    public static final String UPLOAD_URL = "https://lamp.ms.wits.ac.za/home/s2596852/upload3.php";
     public static final String UPLOAD_KEY = "image";
     public static final String TAG = "MY MESSAGE";
 
@@ -165,7 +168,7 @@ public class User extends AppCompatActivity implements View.OnClickListener{
             @Override
             protected Bitmap doInBackground(String... params) {
                 String id = params[0];
-                String add = "https://lamp.ms.wits.ac.za/home/s2572730/getImage.php?id=" + id;
+                String add = "https://lamp.ms.wits.ac.za/home/s2596852/getImage3.php?id=" + id;
                 URL url;
                 Bitmap image = null;
                 try {
