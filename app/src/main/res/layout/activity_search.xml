@@ -15,17 +15,27 @@
         android:inputType="text" />
 
     <!-- Search button -->
+
+    <!-- Search results list -->
+
     <Button
         android:id="@+id/searchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Search" />
 
-    <!-- Search results list -->
     <ListView
         android:id="@+id/searchResultsListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/noResultsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No results found"
+        android:visibility="gone" />
+
 
 </LinearLayout>
