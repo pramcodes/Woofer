@@ -142,10 +142,11 @@ public class SignUpActivity1 extends AppCompatActivity {
                 } else if (Uname.length() < 4) {// Check if the username is at least 4 characters long
                     username.setError("Username must be at least 4 characters long");
                     Toast.makeText(SignUpActivity1.this, "Username must be at least 4 characters long", Toast.LENGTH_SHORT).show();
-
+                    Flag = false;
                 } else if (!Uname.matches("[a-zA-Z0-9_]+")) { // Check if the username contains only alphanumeric characters and underscores
                     username.setError("Username can only contain letters, numbers, and underscores");
                     Toast.makeText(SignUpActivity1.this, "Username can only contain letters, numbers, and underscores", Toast.LENGTH_SHORT).show();
+                    Flag = false;
                 } else if (fName.length() == 0) {
                     fName.setError("Enter first name");
                     Toast.makeText(SignUpActivity1.this, "Please fill in required fields", Toast.LENGTH_SHORT).show();
@@ -157,10 +158,12 @@ public class SignUpActivity1 extends AppCompatActivity {
                 } else if (!firstNameText.matches("[a-zA-Z]+")) {
                     fName.setError("Enter a valid first name");
                     Toast.makeText(SignUpActivity1.this, "Please enter a valid first name", Toast.LENGTH_SHORT).show();
+                    Flag = false;
                     // Check if the first name contains only letters
                 } else if (!lastNameText.matches("[a-zA-Z]+")) {
                     lName.setError("Enter a valid last name");
                     Toast.makeText(SignUpActivity1.this, "Please enter a valid last name", Toast.LENGTH_SHORT).show();
+                    Flag = false;
                     // Check if the last name contains only letters
                 } else if (email.length() == 0) {
                     email.setError("Enter email");
@@ -169,6 +172,7 @@ public class SignUpActivity1 extends AppCompatActivity {
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(emailtext).matches()) { //email is valid format
                     email.setError("Enter email");
                     Toast.makeText(SignUpActivity1.this, "Please enter a valid email", Toast.LENGTH_SHORT).show();
+                    Flag = false;
                 } else if (!isDateSelected) {
                     // Date is not selected, show error message
                     displayDate.setError("Please select a date");
@@ -189,13 +193,14 @@ public class SignUpActivity1 extends AppCompatActivity {
 
                     if (currentMonth < selectedMonth || (currentMonth == selectedMonth && currentDay < selectedDay)) {
                         age--; //Adjusts age if the current date is before the selected birthdate
+                        Flag = false;
                     }
 
                     if (age < 13) {
                         displayDate.setError("You must be 13 years or older");
-
+                        Flag = false;
                     }
-
+//add more password validations?
 
                     if (!password.equals(confirmPassword)) {
                         confirmPasswordLayout.setError("Passwords do not match");
