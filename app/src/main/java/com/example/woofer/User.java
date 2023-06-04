@@ -1,9 +1,7 @@
 package com.example.woofer;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Parcel;
-import android.os.Parcelable;
+
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -21,17 +19,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.woofer.R;
-import com.example.woofer.RequestHandler;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class User extends AppCompatActivity implements View.OnClickListener{
     EditText editTextId;
+    TextView etFollowersCount;
+    TextView etFollowingCount;
 
     public static final String UPLOAD_URL = "https://lamp.ms.wits.ac.za/home/s2596852/upload3.php";
     public static final String UPLOAD_KEY = "image";
@@ -63,6 +64,10 @@ public class User extends AppCompatActivity implements View.OnClickListener{
 
         imageView = findViewById(R.id.profilePic);
 
+        etFollowersCount =findViewById(R.id.followersCount);
+        etFollowingCount =findViewById(R.id.followingCount);
+
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String username = extras.getString("username");
@@ -78,6 +83,8 @@ public class User extends AppCompatActivity implements View.OnClickListener{
         buttonView.setOnClickListener(this);
 
         viewImage();
+        getFollowingCount();
+        //getFollowerCount();
     }
 
     private void showFileChooser() {
@@ -168,7 +175,7 @@ public class User extends AppCompatActivity implements View.OnClickListener{
             @Override
             protected Bitmap doInBackground(String... params) {
                 String id = params[0];
-                String add = "https://lamp.ms.wits.ac.za/home/s2596852/getImage3.php?id=" + id;
+                String add = "https://lamp.ms.wits.ac.za/home/s2596852/getImage3.php?username=" + id;
                 URL url;
                 Bitmap image = null;
                 try {
@@ -210,5 +217,108 @@ public class User extends AppCompatActivity implements View.OnClickListener{
         if(v == buttonView){
             viewImage();
         }
+    }
+    private void getFollowingCount() {
+        String username = editTextId.getText().toString().trim();
+
+        OkHttpClient client = new OkHttpClient();
+        String url = "https://lamp.ms.wits.ac.za/home/s2596852/countFollowing.php?username=" + username;
+
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+
+        class GetFollowingCountTask extends AsyncTask<Void, Void, Integer> {
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(User.this, "Loading...", null, true, true);
+            }
+
+            @Override
+            protected Integer doInBackground(Void... params) {
+                try {
+
+                    Response response = client.newCall(request).execute();
+
+
+                    if (response.isSuccessful()) {
+                        String responseBody = response.body().string();
+                        return Integer.parseInt(responseBody);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Integer followingCount) {
+                super.onPostExecute(followingCount);
+                loading.dismiss();
+
+                if (followingCount != null) {
+                    etFollowingCount.setText("Following: " + String.valueOf(followingCount));
+                } else {
+                    Toast.makeText(User.this, "Failed to retrieve following count.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+        GetFollowingCountTask task = new GetFollowingCountTask();
+        task.execute();
+    }
+
+
+
+    private void getFollowerCount() {
+        String username = editTextId.getText().toString().trim();
+
+        OkHttpClient client = new OkHttpClient();
+        String url = "https://lamp.ms.wits.ac.za/home/s2596852/countFollowers.php?username=" + username;
+
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+
+        class GetFollowersCountTask extends AsyncTask<Void, Void, Integer> {
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(User.this, "Loading...", null, true, true);
+            }
+
+            @Override
+            protected Integer doInBackground(Void... params) {
+                try {
+                    Response response = client.newCall(request).execute();
+                    if (response.isSuccessful()) {
+                        String responseBody = response.body().string();
+                        return Integer.parseInt(responseBody);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Integer followerCount) {
+                super.onPostExecute(followerCount);
+                loading.dismiss();
+
+                if (followerCount != null) {
+                    etFollowersCount.setText("Followers: " + String.valueOf(followerCount));
+                } else {
+                    Toast.makeText(User.this, "Failed to retrieve follower count.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+        GetFollowersCountTask task = new GetFollowersCountTask();
+        task.execute();
     }
 }
