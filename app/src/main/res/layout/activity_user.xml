@@ -13,8 +13,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:onClick="chooseImage"/>
+        android:layout_marginTop="16dp" />
 
 
 
@@ -68,7 +67,7 @@
             android:layout_weight="1"
             android:src="@drawable/baseline_home_24"
             android:tint="@color/white"
-            android:background="#292929"/>
+            android:background="#32527B"/>
 
         <ImageButton
             android:id="@+id/search_button"
@@ -77,7 +76,7 @@
             android:layout_weight="1"
             android:src="@drawable/baseline_search_24"
             android:tint="@color/white"
-            android:background="#292929" />
+            android:background="#32527B" />
 
         <ImageButton
             android:id="@+id/person_button"
@@ -86,20 +85,38 @@
             android:layout_weight="1"
             android:src="@drawable/baseline_person_24"
             android:tint="@color/white"
-            android:background="#292929"/>
+            android:background="#32527B"/>
 
     </LinearLayout>
 
     <TextView
-        android:id="@+id/userName"
+        android:id="@+id/etID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/profilePic"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginEnd="32dp"
         android:layout_toStartOf="@id/followersFollowingContainer"
-        android:text="Levi_A"
-        android:textStyle="bold"
-        android:textColor="@color/white"/>
+        android:text="16"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/buttonUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profilePic"
+        android:layout_marginTop="75dp"
+        android:background="@drawable/howlbutton"
+        android:text="Save Changes" />
+
+    <Button
+        android:id="@+id/buttonView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonUpload"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/howlbutton"
+        android:text="View" />
 
 </RelativeLayout>
