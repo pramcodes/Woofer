@@ -2,8 +2,11 @@ package com.example.woofer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,7 +48,31 @@ public class Search extends AppCompatActivity {
             }
 
     });
-}
+
+        searchResultsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Retrieve the clicked user's information
+                User clickedUser = searchResults.get(position);
+
+                // Start the profile activity and pass the user's information
+                Intent intent = new Intent(Search.this, FriendView.class); //
+                intent.putExtra("user", (Parcelable) clickedUser);
+                startActivity(intent);
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+    }
     private void performSearch(String searchTerm) {
         // Clear previous search results
         searchResults.clear();

@@ -1,64 +1,101 @@
 package com.example.woofer;
-
+import android.os.Parcel;
+import android.os.Parcelable;
 import java.util.Date;
 
-public class UserDetails {
-    private static int userId;
-    private static String username;
-    private static String firstName;
-    private static String lastName;
-    private static String email;
-    private static String dateOfBirth;
+public class UserDetails implements Parcelable {
+    private int userId;
+    private String username;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String dateOfBirth;
 
     public UserDetails() {
 
     }
 
-    public static int getUserId() {
+    protected UserDetails(Parcel in) {
+        userId = in.readInt();
+        username = in.readString();
+        firstName = in.readString();
+        lastName = in.readString();
+        email = in.readString();
+        dateOfBirth = in.readString();
+    }
+
+    public static final Creator<UserDetails> CREATOR = new Creator<UserDetails>() {
+        @Override
+        public UserDetails createFromParcel(Parcel in) {
+            return new UserDetails(in);
+        }
+
+        @Override
+        public UserDetails[] newArray(int size) {
+            return new UserDetails[size];
+        }
+    };
+
+    public int getUserId() {
         return userId;
     }
 
-    public static String getUsername() {
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getUsername() {
         return username;
     }
 
-    public static String getFirstName() {
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFirstName() {
         return firstName;
     }
 
-    public static String getLastName() {
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
         return lastName;
     }
 
-    public static String getEmail() {
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
         return email;
     }
 
-    public static String getDateOfBirth() {
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public static void getUserId(int id) {
-         userId = id;
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
-    public static void setUsername(String uname) {
-        username = uname;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(userId);
+        dest.writeString(username);
+        dest.writeString(firstName);
+        dest.writeString(lastName);
+        dest.writeString(email);
+        dest.writeString(dateOfBirth);
     }
 
-    public static void  setFirstName(String Fname) {
-        firstName = Fname;
-    }
-
-    public static void getLastName(String LName) {
-        lastName = LName;
-    }
-
-    public static void getEmail(String mail) {
-        email = mail;
-    }
-
-    public static void  getDateOfBirth(String DOB) {
-        dateOfBirth = DOB;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 }

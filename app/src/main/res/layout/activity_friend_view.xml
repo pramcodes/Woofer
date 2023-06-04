@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#292929">
+
+
+    <ImageView
+        android:id="@+id/profilePic"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/baseline_person_24"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp" />
+
+
+
+    <!-- Navigation Bar -->
+    <LinearLayout
+        android:id="@+id/followersFollowingContainer"
+        android:layout_width="294dp"
+        android:layout_height="192dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="-418dp"
+        android:layout_toStartOf="@+id/navigation_bar"
+        android:layout_toEndOf="@id/profilePic"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/followersCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="30dp"
+            android:text="Followers: 10"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/followingCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Following: 50"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginBottom="30dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/home_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_home_24"
+            android:tint="@color/white"
+            android:background="#32527B"/>
+
+        <ImageButton
+            android:id="@+id/search_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_search_24"
+            android:tint="@color/white"
+            android:background="#32527B" />
+
+        <ImageButton
+            android:id="@+id/person_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_person_24"
+            android:tint="@color/white"
+            android:background="#32527B"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/etID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profilePic"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="32dp"
+        android:layout_toStartOf="@id/followersFollowingContainer"
+        android:text="16"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/buttonUpload"
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:layout_below="@+id/profilePic"
+        android:layout_marginTop="75dp"
+        android:background="@drawable/howlbutton"
+        android:text="Follow" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/howlsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/followersFollowingContainer"
+        android:layout_marginTop="114dp" />
+
+
+</RelativeLayout>
