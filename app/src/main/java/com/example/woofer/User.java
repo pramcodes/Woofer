@@ -26,6 +26,7 @@ import java.net.URL;
 import java.util.HashMap;
 
 public class User extends AppCompatActivity implements View.OnClickListener{
+    EditText editTextId;
 
     public static final String UPLOAD_URL = "https://lamp.ms.wits.ac.za/home/s2572730/upload2.php";
     public static final String UPLOAD_KEY = "image";
@@ -49,12 +50,22 @@ public class User extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
+        editTextId = findViewById(R.id.etID);
 
         profilepic = findViewById(R.id.profilePic);
         buttonUpload = findViewById(R.id.buttonUpload);
         buttonView = findViewById(R.id.buttonView);
 
         imageView = findViewById(R.id.profilePic);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String username = extras.getString("username");
+            if (username != null) {
+                editTextId.setText(username);
+            }
+        }
+
 
 
         profilepic.setOnClickListener(this);
@@ -133,10 +144,10 @@ public class User extends AppCompatActivity implements View.OnClickListener{
     }
 
     private void viewImage() {
-        EditText editTextId;
+        //EditText editTextId;
         ImageView imageView;
 
-        editTextId = findViewById(R.id.etID);
+        //editTextId = findViewById(R.id.etID);
         imageView = findViewById(R.id.profilePic);
 
         String id = editTextId.getText().toString().trim();

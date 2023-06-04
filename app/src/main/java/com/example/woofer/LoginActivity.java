@@ -87,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                                             //compares user's entered password with password stored on the database
                                             if ((pswrd.equals(passwrd)) && (pswrd != "")){
                                                 Intent intent = new Intent(LoginActivity.this, User.class);
+                                                intent.putExtra("username", username);
                                                 startActivity(intent);
                                             }
                                             else {
@@ -111,9 +112,9 @@ public class LoginActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent(LoginActivity.this, SignUpActivity1.class);
                         startActivity(intent);
-
                     }
                 });
+
 
                 Button exitButton = (Button) findViewById(R.id.loginExitButton);
                 exitButton.setOnClickListener(new View.OnClickListener() {
