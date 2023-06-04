@@ -32,16 +32,12 @@ public class FriendView extends AppCompatActivity {
         List<WoofItem> woofList = new ArrayList<>();//POPULATE WITH HOWLS
         int layoutResourceId = R.layout.woof_item_layout;
         WoofAdapter woofAdapter = new WoofAdapter(FriendView.this, layoutResourceId, woofList);
-
         howlsRecyclerView.setAdapter(woofAdapter);
-
         howlsRecyclerView.setAdapter(woofAdapter);
-
-
         howlsRecyclerView.setAdapter(woofAdapter);
 
 
-        // Check if the user is already following or not
+        // Check if the user is already following or not then
         if (isFollowing.value) {
             followButton.setText("Unfollow");
             howlsTextView.setVisibility(View.VISIBLE);

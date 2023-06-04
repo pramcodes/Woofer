@@ -23,8 +23,6 @@ public class likesPage extends AppCompatActivity {
         recyclerView = findViewById(R.id.likes_recycler_view);
         postAdapter = new PostAdapter(postList);
         postList = new ArrayList<>();
-        postList.add(new WoofItem("uoioijolio"));
-        postList.add(new WoofItem("111111112"));
 
         recyclerView = findViewById(R.id.likes_recycler_view);
         postAdapter = new PostAdapter(postList);
