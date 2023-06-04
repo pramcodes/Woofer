@@ -97,7 +97,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="32dp"
         android:layout_toStartOf="@id/followersFollowingContainer"
-        android:text="16"
+        android:text="4"
         android:textColor="@color/white"
         android:textStyle="bold" />
 

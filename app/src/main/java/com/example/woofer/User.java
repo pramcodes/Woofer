@@ -60,6 +60,8 @@ public class User extends AppCompatActivity implements View.OnClickListener{
         profilepic.setOnClickListener(this);
         buttonUpload.setOnClickListener(this);
         buttonView.setOnClickListener(this);
+
+        viewImage();
     }
 
     private void showFileChooser() {
@@ -165,16 +167,21 @@ public class User extends AppCompatActivity implements View.OnClickListener{
             }
 
             @Override
-            protected void onPostExecute(Bitmap b) {
-                super.onPostExecute(b);
+            protected void onPostExecute(Bitmap bitmap) {
+                super.onPostExecute(bitmap);
                 loading.dismiss();
-                imageView.setImageBitmap(b);
+                if (bitmap != null) {
+                    imageView.setImageBitmap(bitmap);
+                } else {
+                    imageView.setImageResource(R.drawable.baseline_person_24); // Set the default drawable resource
+                }
             }
         }
 
         GetImage gi = new GetImage();
         gi.execute(id);
     }
+
 
     @Override
     public void onClick(View v) {
