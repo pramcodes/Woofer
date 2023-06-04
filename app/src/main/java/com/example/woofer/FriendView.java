@@ -67,6 +67,9 @@ public class FriendView extends AppCompatActivity {
                //
             }
         });
+
+
+
     }
 
 
