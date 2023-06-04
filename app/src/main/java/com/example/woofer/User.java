@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -26,7 +27,7 @@ import java.net.URL;
 import java.util.HashMap;
 
 public class User extends AppCompatActivity implements View.OnClickListener{
-    EditText editTextId;
+    TextView editTextId;
 
     public static final String UPLOAD_URL = "https://lamp.ms.wits.ac.za/home/s2572730/upload2.php";
     public static final String UPLOAD_KEY = "image";
