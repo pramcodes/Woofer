@@ -15,6 +15,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,8 @@ public class User extends AppCompatActivity implements View.OnClickListener{
     private ImageView imageView;
     private Button buttonUpload;
     private Button buttonView;
+    private ImageButton buttonToHowl;
+    private ImageButton toLogin;
 
     private ImageView profilepic;
 
@@ -57,6 +60,26 @@ public class User extends AppCompatActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+
+        //Moving to howls page
+        buttonToHowl=(ImageButton) findViewById(R.id.buttonUserAddHowl);
+        buttonToHowl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(User.this, userAddWoof.class);
+                startActivity(intent);
+            }
+        });
+
+        //Moving back to login
+        toLogin=(ImageButton) findViewById(R.id.imageButtonReturnToLogin);
+        toLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(User.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         editTextId = findViewById(R.id.etID);
 
