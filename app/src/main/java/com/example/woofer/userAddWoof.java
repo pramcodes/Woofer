@@ -31,7 +31,7 @@ public class userAddWoof extends AppCompatActivity {
 
 
         //Return to userAcc
-        returnToUser=(ImageButton) findViewById(R.id.btnBack);
+        returnToUser=(ImageButton) findViewById(R.id.btnReturnToUserPage);
         returnToUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

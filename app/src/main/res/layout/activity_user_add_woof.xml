@@ -19,15 +19,6 @@
             android:background="#008494"
             android:src="@drawable/baseline_pets_24" />
 
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_alignParentStart="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:padding="12dp"
-            android:src="@drawable/baseline_arrow_back_24"
-            android:tint="@android:color/white" />
 
     </RelativeLayout>
 
@@ -76,5 +67,42 @@
         android:layout_marginEnd="16dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:id="@+id/navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/home_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_home_24"
+            android:tint="@color/white"
+            android:background="#32527B"/>
+
+        <ImageButton
+            android:id="@+id/search_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_search_24"
+            android:tint="@color/white"
+            android:background="#32527B" />
+
+        <ImageButton
+            android:id="@+id/btnReturnToUserPage"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_person_24"
+            android:tint="@color/white"
+            android:background="#32527B"/>
+
+    </LinearLayout>
 
 </RelativeLayout>
