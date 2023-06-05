@@ -30,6 +30,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class User extends AppCompatActivity implements View.OnClickListener{
+
+    String storeUsername;
     EditText editTextId;
     TextView etFollowersCount;
     TextView etFollowingCount;
@@ -64,17 +66,18 @@ public class User extends AppCompatActivity implements View.OnClickListener{
 
         imageView = findViewById(R.id.profilePic);
 
-        etFollowersCount =findViewById(R.id.followersCount);
-        etFollowingCount =findViewById(R.id.followingCount);
-
-
+        //Getting username from login page and displaying
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String username = extras.getString("username");
             if (username != null) {
                 editTextId.setText(username);
+                storeUsername=username;
             }
         }
+
+        etFollowersCount =findViewById(R.id.followersCount);
+        etFollowingCount =findViewById(R.id.followingCount);
 
 
 
@@ -84,9 +87,10 @@ public class User extends AppCompatActivity implements View.OnClickListener{
 
         viewImage();
         getFollowingCount();
-        //getFollowerCount();
+        getFollowerCount();
     }
 
+    //When you click on the drawable you can pick a profile picture
     private void showFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -196,7 +200,7 @@ public class User extends AppCompatActivity implements View.OnClickListener{
                 if (bitmap != null) {
                     imageView.setImageBitmap(bitmap);
                 } else {
-                    imageView.setImageResource(R.drawable.baseline_person_24); // Set the default drawable resource
+                    imageView.setImageResource(R.drawable.baseline_person_24);
                 }
             }
         }
@@ -219,10 +223,10 @@ public class User extends AppCompatActivity implements View.OnClickListener{
         }
     }
     private void getFollowingCount() {
-        String username = editTextId.getText().toString().trim();
+        //String username = editTextId.getText().toString().trim();
 
         OkHttpClient client = new OkHttpClient();
-        String url = "https://lamp.ms.wits.ac.za/home/s2596852/countFollowing.php?username=" + username;
+        String url = "https://lamp.ms.wits.ac.za/home/s2596852/countFollowing.php?username=" + storeUsername;
 
         Request request = new Request.Builder()
                 .url(url)
@@ -274,10 +278,10 @@ public class User extends AppCompatActivity implements View.OnClickListener{
 
 
     private void getFollowerCount() {
-        String username = editTextId.getText().toString().trim();
+        //String username = editTextId.getText().toString().trim();
 
         OkHttpClient client = new OkHttpClient();
-        String url = "https://lamp.ms.wits.ac.za/home/s2596852/countFollowers.php?username=" + username;
+        String url = "https://lamp.ms.wits.ac.za/home/s2596852/countFollowers.php?username=" + storeUsername;
 
         Request request = new Request.Builder()
                 .url(url)
@@ -297,7 +301,7 @@ public class User extends AppCompatActivity implements View.OnClickListener{
                 try {
                     Response response = client.newCall(request).execute();
                     if (response.isSuccessful()) {
-                        String responseBody = response.body().string();
+                        String responseBody = response.body().string().trim();
                         return Integer.parseInt(responseBody);
                     }
                 } catch (IOException e) {
