@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -138,7 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
 
 
-                Button exitButton = (Button) findViewById(R.id.loginExitButton);
+                ImageButton exitButton = (ImageButton) findViewById(R.id.loginExitButton);
                 exitButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

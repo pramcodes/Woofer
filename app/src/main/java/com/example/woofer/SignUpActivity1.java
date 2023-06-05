@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -113,7 +114,7 @@ public class SignUpActivity1 extends AppCompatActivity {
             }
         };
         //Return to login page
-        Button backButton = (Button)findViewById(R.id.newAccBackButton);
+        ImageButton backButton = (ImageButton) findViewById(R.id.newAccBackButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

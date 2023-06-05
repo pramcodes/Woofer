@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up"
-        android:background="@drawable/custom_sign_up_button"
+        android:background="@drawable/howlbutton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"
@@ -26,8 +26,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
-        android:textColor="@color/teal_200"
-        android:text="Please enter your username and password below."
+        android:textColor="#32527B"
+        android:text="Enter your username and password below."
+        android:textStyle="bold"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -70,7 +72,7 @@
 
             android:layout_height="match_parent"
             android:background="#000000"
-            android:backgroundTint="#009688"
+            android:backgroundTint="#32527B"
             android:ems="15"
             android:inputType="textPassword"
             android:textColor="@color/white"
@@ -81,16 +83,15 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <Button
+    <ImageButton
         android:id="@+id/loginExitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="32dp"
-        android:text="Exit"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:textColor="#1589FF"
-        android:textStyle="bold"
+        android:layout_width="89dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/baseline_arrow_back_24"
+        android:tint="#008494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -100,7 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="112dp"
         android:text="Login"
-        android:background="@drawable/custom_sign_up_button"
+        android:background="@drawable/howlbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
