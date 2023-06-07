@@ -42,16 +42,6 @@ public class SignUpActivity1 extends AppCompatActivity {
     boolean isDateSelected = false;
     String UDOB = "";
 
-    private static String escapeSpecialCharacters(String input) {
-        input = input.replace("\\", "\\\\"); // Replace backslash with double backslash
-        input = input.replace("\"", "\\\""); // Replace double quotes with escaped double quotes
-        input = input.replace("/", "\\/"); // Replace forward slash with escaped forward slash
-        input = input.replace("@", "\\@"); // Replace @ with escaped @
-        // Add any additional character replacements if needed
-
-        return input;
-    }
-
     public String CheckName(String Unam){
 
         Map<String, Object> n = new HashMap<>();
@@ -210,7 +200,6 @@ public class SignUpActivity1 extends AppCompatActivity {
 
                     if (currentMonth < selectedMonth || (currentMonth == selectedMonth && currentDay < selectedDay)) {
                         age--; //Adjusts age if the current date is before the selected birthdate
-                        Flag = false;
                     }
 
                     if (age < 13) {
@@ -253,6 +242,18 @@ public class SignUpActivity1 extends AppCompatActivity {
 
                         String  msg = insert.postRequest();
                         Toast.makeText(SignUpActivity1.this, msg, Toast.LENGTH_SHORT).show();
+
+                        UserDetails NewUser = new UserDetails();
+
+                        Map<String, Object> mID = new HashMap<>();
+                        mID.put("username", username.getText().toString());
+                        Requests ReqID = new Requests(mID,"https://lamp.ms.wits.ac.za/home/s2596852/getID.php");
+
+                        Integer UID = Integer.parseInt(ReqID.processJSON( ReqID.getRequest(),"user_id"));
+
+
+                        Intent intent = new Intent(SignUpActivity1.this, User.class);
+                        startActivity(intent);
                     }
                 }
             }
