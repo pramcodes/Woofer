@@ -53,12 +53,53 @@
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/followersFollowingContainer"
+        android:layout_marginTop="81dp"
+        android:background="#008494"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+
+        <ImageButton
+            android:id="@+id/toolbar_title"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:background="#008494"
+            android:scaleType="fitCenter"
+            android:src="@drawable/baseline_pets_24" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="398dp"
+        android:layout_above="@id/navigation_bar"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="0dp"
+        android:background="#292929" />
+
+    <ImageButton
+        android:id="@+id/imageButtonAdd"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/baseline_add_24"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/addwoofthings"
+        android:layout_above="@id/navigation_bar"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="50dp" />
+
     <LinearLayout
         android:id="@+id/navigation_bar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/white"
+        android:background="@drawable/customnavbar"
         android:orientation="horizontal">
 
         <ImageButton
@@ -67,8 +108,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/baseline_people_alt_24"
-            android:tint="@color/white"
-            android:background="#32527B"/>
+            android:background="@android:color/transparent"/>
 
         <ImageButton
             android:id="@+id/search_button"
@@ -76,8 +116,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/baseline_search_24"
-            android:tint="@color/white"
-            android:background="#32527B" />
+            android:background="@android:color/transparent" />
 
         <ImageButton
             android:id="@+id/person_button"
@@ -85,12 +124,11 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/baseline_home_24"
-            android:tint="@color/white"
-            android:background="#32527B"/>
+            android:background="@android:color/transparent"/>
 
     </LinearLayout>
 
-    <EditText
+    <TextView
         android:id="@+id/etID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -126,7 +164,7 @@
         android:text="View"
         android:visibility="gone"/>
 
-    <ImageButton
+<!--    <ImageButton
         android:id="@+id/buttonUserAddHowl"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -135,7 +173,7 @@
         android:src="@drawable/baseline_pets_24"
         android:scaleType="fitCenter"
         android:background="@android:color/transparent"
-        android:tint="#008494" />
+        android:tint="#008494" />-->
 
     <ImageButton
         android:id="@+id/imageButtonReturnToLogin"

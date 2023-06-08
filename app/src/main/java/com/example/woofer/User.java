@@ -33,7 +33,7 @@ import okhttp3.Response;
 public class User extends AppCompatActivity implements View.OnClickListener{
     String storeUsername;
     String id;
-    EditText editTextId;
+    TextView editTextId;
     TextView etFollowersCount;
     TextView etFollowingCount;
 
@@ -71,7 +71,7 @@ public class User extends AppCompatActivity implements View.OnClickListener{
         buttonLogOut=findViewById(R.id.buttonLogout);
 
         //Moving to howls page
-        buttonToHowl=(ImageButton) findViewById(R.id.buttonUserAddHowl);
+        buttonToHowl=(ImageButton) findViewById(R.id.imageButtonAdd);
         buttonToHowl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

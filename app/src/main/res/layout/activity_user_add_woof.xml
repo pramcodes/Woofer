@@ -73,7 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/white"
+        android:background="@drawable/customnavbar"
         android:orientation="horizontal">
 
         <ImageButton
@@ -81,9 +81,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/baseline_home_24"
-            android:tint="@color/white"
-            android:background="#32527B"/>
+            android:src="@drawable/baseline_people_alt_24"
+            android:background="@android:color/transparent" />
 
         <ImageButton
             android:id="@+id/search_button"
@@ -91,17 +90,15 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/baseline_search_24"
-            android:tint="@color/white"
-            android:background="#32527B" />
+            android:background="@android:color/transparent" />
 
         <ImageButton
             android:id="@+id/btnReturnToUserPage"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/baseline_person_24"
-            android:tint="@color/white"
-            android:background="#32527B"/>
+            android:src="@drawable/baseline_home_24"
+            android:background="@android:color/transparent"/>
 
     </LinearLayout>
 
