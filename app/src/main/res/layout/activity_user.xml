@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#292929">
 
 
@@ -18,11 +19,11 @@
 
     <LinearLayout
         android:id="@+id/followersFollowingContainer"
-        android:layout_width="294dp"
-        android:layout_height="192dp"
-        android:layout_marginStart="9dp"
+        android:layout_width="255dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="21dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="-418dp"
+        android:layout_marginEnd="-391dp"
         android:layout_toStartOf="@+id/navigation_bar"
         android:layout_toEndOf="@id/profilePic"
         android:gravity="center_vertical"
@@ -32,21 +33,23 @@
             android:id="@+id/followersCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
             android:layout_marginStart="30dp"
-            android:textStyle="bold"
+            android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
+            android:layout_marginTop="50dp"
             android:text="Followers: 10"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/followingCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="50dp"
             android:text="Following: 50"
-            android:textStyle="bold"
             android:textColor="@color/white"
-            android:layout_marginBottom="30dp"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -63,7 +66,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/baseline_home_24"
+            android:src="@drawable/baseline_people_alt_24"
             android:tint="@color/white"
             android:background="#32527B"/>
 
@@ -81,7 +84,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/baseline_person_24"
+            android:src="@drawable/baseline_home_24"
             android:tint="@color/white"
             android:background="#32527B"/>
 
@@ -104,9 +107,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/profilePic"
-        android:layout_marginTop="75dp"
-        android:background="@drawable/howlbutton"
-        android:text="Save Changes" />
+        android:layout_alignEnd="@+id/followersFollowingContainer"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="69dp"
+        android:background="@drawable/savechangesbutton"
+        android:text=" Save Changes "
+        android:textColor="#32527B"
+        android:textSize="12dp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/buttonView"
@@ -115,7 +123,8 @@
         android:layout_below="@+id/buttonUpload"
         android:layout_marginTop="12dp"
         android:background="@drawable/howlbutton"
-        android:text="View" />
+        android:text="View"
+        android:visibility="gone"/>
 
     <ImageButton
         android:id="@+id/buttonUserAddHowl"
@@ -132,9 +141,22 @@
         android:id="@+id/imageButtonReturnToLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/baseline_arrow_back_24"
+        app:srcCompat="@drawable/baseline_density_medium_24"
+        android:onClick="onImageButtonClick"
         android:background="#292929"
-        android:tint="#008494"/>
+        android:tint="@color/white"/>
+
+    <Button
+        android:id="@+id/buttonLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="10dp"
+        android:text="Logout"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonReturnToLogin"
+        tools:layout_editor_absoluteX="199dp"
+        android:background="@drawable/logoutbutton"
+        android:visibility="gone"/>
 
     <!--    <RelativeLayout
             android:id="@+id/buttonUserAddHowlLayout"

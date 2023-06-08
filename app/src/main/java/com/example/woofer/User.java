@@ -56,11 +56,19 @@ public class User extends AppCompatActivity implements View.OnClickListener{
 
     private Uri filePath;
 
+    private ImageButton logOutImageButton;
+    private Button buttonLogOut;
+    private boolean btnVisibility=false;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+
+        //Code for logout p1
+        logOutImageButton=findViewById(R.id.imageButtonReturnToLogin);
+        buttonLogOut=findViewById(R.id.buttonLogout);
 
         //Moving to howls page
         buttonToHowl=(ImageButton) findViewById(R.id.buttonUserAddHowl);
@@ -73,14 +81,17 @@ public class User extends AppCompatActivity implements View.OnClickListener{
         });
 
         //Moving back to login
-        toLogin=(ImageButton) findViewById(R.id.imageButtonReturnToLogin);
+/*        toLogin=(ImageButton) findViewById(R.id.imageButtonReturnToLogin);
         toLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(User.this, LoginActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
+
+
+
 
         editTextId = findViewById(R.id.etID);
 
@@ -412,5 +423,23 @@ public class User extends AppCompatActivity implements View.OnClickListener{
         }
         GetFollowersCountTask task = new GetFollowersCountTask();
         task.execute();
+    }
+
+    //Code for logout button P2
+    public void onImageButtonClick(View view) {
+        if (btnVisibility) {
+            buttonLogOut.setVisibility(View.GONE);
+            btnVisibility = false;
+        } else {
+            buttonLogOut.setVisibility(View.VISIBLE);
+            buttonLogOut.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(User.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            });
+            btnVisibility = true;
+        }
     }
 }
