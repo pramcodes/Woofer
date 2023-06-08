@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -12,6 +13,7 @@ public class userAddWoof extends AppCompatActivity {
 
     String storeUsername;
     ImageButton returnToUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +27,6 @@ public class userAddWoof extends AppCompatActivity {
             String username = extras.getString("username");
             if (username != null) {
                 storeUsername=username;
-                //Toast.makeText(this, storeUsername, Toast.LENGTH_SHORT).show();
             }
         }
 

@@ -31,13 +31,14 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class User extends AppCompatActivity implements View.OnClickListener{
-
     String storeUsername;
+    String id;
     EditText editTextId;
     TextView etFollowersCount;
     TextView etFollowingCount;
 
-    public static final String UPLOAD_URL = "https://lamp.ms.wits.ac.za/home/s2596852/upload3.php";
+    public static final String UPLOAD_URL = "https://lamp.ms.wits.ac.za/home/s2596852/uploadidk.php";
+    //public static final String UPLOAD_URL = "https://lamp.ms.wits.ac.za/home/s2572730/uploadidk.php";
     public static final String UPLOAD_KEY = "image";
     public static final String TAG = "MY MESSAGE";
 
@@ -49,7 +50,7 @@ public class User extends AppCompatActivity implements View.OnClickListener{
     private ImageButton buttonToHowl;
     private ImageButton toLogin;
 
-    private ImageView profilepic;
+    private ImageView ivChooseShowPic;
 
     private Bitmap bitmap;
 
@@ -83,7 +84,7 @@ public class User extends AppCompatActivity implements View.OnClickListener{
 
         editTextId = findViewById(R.id.etID);
 
-        profilepic = findViewById(R.id.profilePic);
+        ivChooseShowPic = findViewById(R.id.profilePic);
         buttonUpload = findViewById(R.id.buttonUpload);
         buttonView = findViewById(R.id.buttonView);
 
@@ -104,11 +105,11 @@ public class User extends AppCompatActivity implements View.OnClickListener{
 
 
 
-        profilepic.setOnClickListener(this);
+        ivChooseShowPic.setOnClickListener(this);
         buttonUpload.setOnClickListener(this);
         buttonView.setOnClickListener(this);
 
-        viewImage();
+        ViewImage();
         getFollowingCount();
         getFollowerCount();
     }
@@ -130,7 +131,7 @@ public class User extends AppCompatActivity implements View.OnClickListener{
             filePath = data.getData();
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-                profilepic.setImageBitmap(bitmap);
+                ivChooseShowPic.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -168,11 +169,14 @@ public class User extends AppCompatActivity implements View.OnClickListener{
             protected String doInBackground(Bitmap... params) {
                 Bitmap bitmap = params[0];
                 String uploadImage = getStringImage(bitmap);
+                id = editTextId.getText().toString().trim();
 
                 HashMap<String,String> data = new HashMap<>();
+                data.put("id", id);
                 data.put(UPLOAD_KEY, uploadImage);
 
-                String result = rh.sendPostRequest(UPLOAD_URL,data);
+                //String result = rh.sendPostRequest(UPLOAD_URL,data);
+                String result = rh.sendPostRequest(UPLOAD_URL, data, id);
 
                 return result;
             }
@@ -182,7 +186,7 @@ public class User extends AppCompatActivity implements View.OnClickListener{
         ui.execute(bitmap);
     }
 
-    private void viewImage() {
+  /*  private void viewImage() {
         //EditText editTextId;
         ImageView imageView;
 
@@ -230,21 +234,82 @@ public class User extends AppCompatActivity implements View.OnClickListener{
 
         GetImage gi = new GetImage();
         gi.execute(id);
-    }
+    }*/
 
 
     @Override
     public void onClick(View v) {
-        if (v == profilepic) {
+        if (v == ivChooseShowPic) {
             showFileChooser();
         }
         if(v == buttonUpload){
             uploadImage();
         }
         if(v == buttonView){
-            viewImage();
+            ViewImage();
         }
     }
+
+    private void ViewImage(){
+        //RequestHandler requestHandler;
+        //requestHandler=new RequestHandler();
+        buttonView.setOnClickListener(this);
+        getImage();
+
+    }
+
+    private void getImage() {
+        id = editTextId.getText().toString().trim();
+        class GetImage extends AsyncTask<String,Void,Bitmap>{
+            ProgressDialog loading;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(User.this, "Uploading...", null,true,true);
+            }
+
+            /* @Override
+             protected void onPostExecute(Bitmap b) {
+                 super.onPostExecute(b);
+                 loading.dismiss();
+                 ivTest.setImageBitmap(b);
+             }*/
+            protected void onPostExecute(Bitmap bitmap) {
+                super.onPostExecute(bitmap);
+                loading.dismiss();
+                if (bitmap != null) {
+                    ivChooseShowPic.setImageBitmap(bitmap);
+                } else {
+                    //Toast.makeText(User.this, "Failed to load image", Toast.LENGTH_SHORT).show();
+                    imageView.setImageResource(R.drawable.baseline_person_24);
+                }
+            }
+
+            @Override
+            protected Bitmap doInBackground(String... params) {
+                String id = params[0];
+                String add = "https://lamp.ms.wits.ac.za/home/s2596852/getImageidk.php?id="+id;
+                //String add = "https://lamp.ms.wits.ac.za/home/s2572730/getImageidk.php?id="+id;
+                URL url = null;
+                Bitmap image = null;
+                try {
+                    url = new URL(add);
+                    image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return image;
+            }
+        }
+
+        GetImage gi = new GetImage();
+        gi.execute(id);
+    }
+
+
+
     private void getFollowingCount() {
         //String username = editTextId.getText().toString().trim();
 
