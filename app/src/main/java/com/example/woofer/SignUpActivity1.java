@@ -252,7 +252,8 @@ public class SignUpActivity1 extends AppCompatActivity {
                         Integer UID = Integer.parseInt(ReqID.processJSON( ReqID.getRequest(),"user_id"));
 
 
-                        Intent intent = new Intent(SignUpActivity1.this, User.class);
+                        //Intent intent = new Intent(SignUpActivity1.this, User.class);
+                        Intent intent = new Intent(SignUpActivity1.this, LoginActivity.class);
                         startActivity(intent);
                     }
                 }

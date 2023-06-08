@@ -8,7 +8,7 @@
     android:backgroundTint="#212323"
     tools:context=".LoginActivity">
 
-    <TextView
+<!--    <TextView
         android:id="@+id/loginView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />-->
 
     <Button
         android:id="@+id/signUpLoginButton"
@@ -32,7 +32,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginLoginButton"
-        app:layout_constraintVertical_bias="0.51" />
+        app:layout_constraintVertical_bias="0.108" />
 
     <TextView
         android:id="@+id/loginView"
@@ -52,7 +52,7 @@
         android:id="@+id/uNameLoginView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="48dp"
         android:backgroundTint="#009688"
         android:drawableLeft="@drawable/baseline_person_24"
         android:drawablePadding="10dp"
@@ -61,7 +61,7 @@
         android:textColorHint="#FFFFFF"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.374"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginView" />
 
@@ -120,4 +120,13 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account? Sign up"
+        tools:layout_editor_absoluteX="109dp"
+        tools:layout_editor_absoluteY="492dp"
+        android:textColor="#03e4ff"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
