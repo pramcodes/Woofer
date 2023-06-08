@@ -8,28 +8,41 @@
     android:backgroundTint="#212323"
     tools:context=".LoginActivity">
 
+    <TextView
+        android:id="@+id/loginView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="452dp"
+        android:text="New to Woofer, click below"
+        android:textColor="#32527B"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/signUpLoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
         android:background="@drawable/howlbutton"
+        android:text="Sign Up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginLoginButton"
-        app:layout_constraintVertical_bias="0.317" />
+        app:layout_constraintVertical_bias="0.51" />
 
     <TextView
         android:id="@+id/loginView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
+        android:text="Please enter your account details below"
         android:textColor="#32527B"
-        android:text="Enter your username and password below."
-        android:textStyle="bold"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,16 +52,16 @@
         android:id="@+id/uNameLoginView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="44dp"
+        android:backgroundTint="#009688"
         android:drawableLeft="@drawable/baseline_person_24"
         android:drawablePadding="10dp"
         android:hint="Username:"
-        android:text="Levi_A"
-        android:backgroundTint="#009688"
-        android:textColorHint="#FFFFFF"
         android:textColor="@color/white"
+        android:textColorHint="#FFFFFF"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginView" />
 
@@ -57,12 +70,13 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:backgroundTint="#009688"
         android:hint="Password:"
         android:textColor="@color/white"
         android:textColorHint="#FFFFFF"
         app:boxBackgroundColor="#00404040"
-        android:backgroundTint="#009688"
-        app:layout_constraintStart_toStartOf="@id/uNameLoginView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/uNameLoginView"
         app:passwordToggleEnabled="true">
 
@@ -99,11 +113,11 @@
         android:id="@+id/loginLoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:text="Login"
+        android:layout_marginTop="40dp"
         android:background="@drawable/howlbutton"
+        android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

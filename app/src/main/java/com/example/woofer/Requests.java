@@ -137,6 +137,15 @@ public class Requests {
         return futureResult.join();
     }
 
-
+    public String processJSON(String json, String FieldToReturn){
+        String out = "";
+        try {
+            JSONObject all = new JSONObject(json);
+            out = all.getString(FieldToReturn);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return out;
+    }
 
 }

@@ -17,27 +17,6 @@
         tools:context=".MainActivity">
 
 
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="Confirm Password:"
-            app:passwordToggleEnabled="true"
-            app:layout_constraintTop_toBottomOf="@id/newAccountPassword"
-            app:layout_constraintStart_toStartOf="@id/newAccountPassword"
-            app:layout_constraintVertical_bias="7">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:ems="15"
-                android:inputType="textPassword"
-                app:layout_constraintStart_toStartOf="parent" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
         <ImageButton
             android:id="@+id/newAccBackButton"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -56,11 +35,13 @@
             android:id="@+id/newAccView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="112dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginBottom="29dp"
             android:text="Fill in your information below."
             android:textColor="#32527B"
             android:textSize="20sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/uNameNewAccView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -69,8 +50,8 @@
             android:id="@+id/uNameNewAccView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginBottom="29dp"
+            android:accessibilityTraversalAfter="@id/fNameNewAccView"
             android:backgroundTint="#009688"
             android:drawableLeft="@drawable/baseline_person_24"
             android:drawablePadding="10dp"
@@ -78,67 +59,75 @@
             android:textColor="@color/white"
             android:textColorHint="#FFFFFF"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/fNameNewAccView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/newAccView"
-            tools:text="Laven" />
+            app:layout_constraintTop_toBottomOf="@+id/newAccView" />
 
         <EditText
             android:id="@+id/fNameNewAccView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginBottom="24dp"
+            android:accessibilityTraversalAfter="@id/lNameNewAccView"
+            android:accessibilityTraversalBefore="@id/uNameNewAccView"
             android:backgroundTint="#009688"
             android:hint="First Name:"
             android:textColor="@color/white"
             android:textColorHint="#FFFFFF"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/lNameNewAccView"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/uNameNewAccView"
-            tools:text="Venenno" />
+            app:layout_constraintTop_toBottomOf="@+id/uNameNewAccView" />
 
         <EditText
             android:id="@+id/lNameNewAccView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginBottom="36dp"
             android:backgroundTint="#009688"
             android:hint="Last Name:"
             android:textColor="@color/white"
             android:textColorHint="#FFFFFF"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fNameNewAccView"
-            tools:text="Muneca" />
+            app:layout_constraintTop_toBottomOf="@+id/fNameNewAccView" />
 
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginBottom="29dp"
             android:ems="10"
             android:hint="Email:"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:textColor="@color/white"
             android:textColorHint="#FFFFFF"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textViewDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.477"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lNameNewAccView"
-            tools:text="laven@mail.com" />
+            app:layout_constraintTop_toBottomOf="@+id/lNameNewAccView" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/newAccountPassword"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="22dp"
             android:hint="Password:"
             app:hintTextColor="@color/white"
-            app:passwordToggleEnabled="true"
-            app:layout_constraintTop_toBottomOf="@id/textViewDate"
-            app:layout_constraintStart_toStartOf="@id/textViewDate"
-            app:layout_constraintVertical_bias="7">
+            app:layout_constraintBottom_toTopOf="@+id/newAccountConfirmPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDate"
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/newAccPasswordEditText"
@@ -146,23 +135,26 @@
                 android:layout_height="wrap_content"
                 android:ems="15"
                 android:inputType="textPassword"
+                android:textColor="#959595"
                 android:textColorHint="@color/white"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="123!@#qwe" />
+                app:layout_constraintStart_toStartOf="parent" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/newAccountConfirmPassword"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="49dp"
             android:hint="Confirm Password:"
             app:hintTextColor="@color/white"
-            app:passwordToggleEnabled="true"
-            app:layout_constraintTop_toBottomOf="@id/newAccountPassword"
-            app:layout_constraintStart_toStartOf="@id/newAccountPassword"
-            app:layout_constraintVertical_bias="7">
+            app:layout_constraintBottom_toTopOf="@+id/newAccConfirmButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/newAccountPassword"
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/newAccConfirmPasswordEditText"
@@ -171,39 +163,41 @@
                 android:ems="15"
                 android:hint="Confirm Password"
                 android:inputType="textPassword"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="123!@#qwe" />
+                android:textColor="#959595"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <Button
             android:id="@+id/newAccConfirmButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="116dp"
-            android:layout_marginTop="20dp"
             android:background="@drawable/howlbutton"
+            android:text="Sign Up"
             android:textColor="@color/white"
-            android:text="Confirm"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/newAccountConfirmPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/newAccountConfirmPassword" />
 
         <TextView
             android:id="@+id/textViewDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
-            android:text="Select birthdate"
-            android:textColor="@color/white"
+            android:layout_width="204dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="39dp"
             android:drawableRight="@drawable/baseline_calendar_month_24"
             android:drawablePadding="10dp"
-            android:textStyle="bold"
+            android:text="Select birthdate"
+            android:textColor="@color/white"
             android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="@id/editTextEmail"
-            app:layout_constraintTop_toBottomOf="@id/editTextEmail" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/newAccountPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
