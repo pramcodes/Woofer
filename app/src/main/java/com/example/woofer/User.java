@@ -63,6 +63,7 @@ public class User extends AppCompatActivity implements View.OnClickListener{
     private ListView lvUserWoofs;
     private ImageButton buttonToHowl;
     private ImageButton toLogin;
+    private ImageButton toFriends;
 
     private ImageView ivChooseShowPic;
 
@@ -94,25 +95,54 @@ public class User extends AppCompatActivity implements View.OnClickListener{
             }
         });
 
-      //Moving to search page
-        buttonToSearch=findViewById(R.id.searchButton);
-        buttonToSearch.setOnClickListener(new View.OnClickListener() {
+
+        editTextId = findViewById(R.id.etID);
+
+        //Moving to friends page
+        toFriends = (ImageButton) findViewById(R.id.friendsButton);
+        toFriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(User.this, Search.class);
+                String textToPass = editTextId.getText().toString();
+                Intent intent = new Intent(User.this, viewFriendsHowls.class);
+                intent.putExtra("textKey", textToPass);
                 startActivity(intent);
             }
         });
 
-        editTextId = findViewById(R.id.etID);
+
+
+
 
         ivChooseShowPic = findViewById(R.id.profilePic);
         buttonUpload = findViewById(R.id.buttonUpload);
         buttonView = findViewById(R.id.buttonView);
         imageView = findViewById(R.id.profilePic);
 
+        // Getting username from login page and displaying
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String username = extras.getString("username");
+            if (username != null) {
+                editTextId.setText(username);
+                storeUsername = username;
+            }
+        }
 
-        //Getting username from login page and displaying
+// Moving to search page
+        buttonToSearch = findViewById(R.id.searchButton);
+        buttonToSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(User.this, Search.class);
+                intent.putExtra("username", storeUsername);
+                startActivity(intent);
+            }
+        });
+
+
+
+/*        //Getting username from login page and displaying
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String username = extras.getString("username");
@@ -121,6 +151,18 @@ public class User extends AppCompatActivity implements View.OnClickListener{
                 storeUsername=username;
             }
         }
+
+        //Moving to search page
+        buttonToSearch=findViewById(R.id.searchButton);
+        buttonToSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String username= getIntent().getStringExtra(storeUsername);
+                Intent intent= new Intent(User.this, Search.class);
+                intent.putExtra(storeUsername,username)
+                startActivity(intent);
+            }
+        });*/
 
         //Users tweets
         lvUserWoofs=findViewById(R.id.listView);
@@ -140,7 +182,6 @@ public class User extends AppCompatActivity implements View.OnClickListener{
         getFollowingCount();
         getFollowerCount();
     }
-
 
 
     //When you click on the drawable you can pick a profile picture
