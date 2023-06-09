@@ -111,12 +111,12 @@
             android:background="@android:color/transparent"/>
 
         <ImageButton
-            android:id="@+id/search_button"
+            android:id="@+id/searchButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/baseline_search_24"
-            android:background="@android:color/transparent" />
+            android:background="@android:color/transparent"
+            android:src="@drawable/baseline_search_24" />
 
         <ImageButton
             android:id="@+id/person_button"
@@ -152,7 +152,8 @@
         android:text=" Save Changes "
         android:textColor="#32527B"
         android:textSize="12dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/buttonView"

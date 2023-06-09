@@ -43,7 +43,7 @@ public class UserWoofAdapter extends ArrayAdapter<UserWoofItem> {
         UserWoofItem userWoofItem = userWoofItems.get(position);
 
         if (userWoofItem != null) {
-            tvUserId.setText(userWoofItem.getName());  // Display the name instead of the userId
+            tvUserId.setText(userWoofItem.getName());
             tvTimestamp.setText(userWoofItem.getTimestamp());
             highlightHashtags(tvHowl, userWoofItem.getHowl()); // Apply hashtag highlighting
         }

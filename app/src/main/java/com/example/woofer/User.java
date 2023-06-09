@@ -56,6 +56,8 @@ public class User extends AppCompatActivity implements View.OnClickListener{
 
     private ImageView imageView;
     private Button buttonUpload;
+
+    private ImageButton buttonToSearch;
     private Button buttonView;
 
     private ListView lvUserWoofs;
@@ -88,6 +90,16 @@ public class User extends AppCompatActivity implements View.OnClickListener{
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(User.this, userAddWoof.class);
+                startActivity(intent);
+            }
+        });
+
+      //Moving to search page
+        buttonToSearch=findViewById(R.id.searchButton);
+        buttonToSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(User.this, Search.class);
                 startActivity(intent);
             }
         });
@@ -207,9 +219,11 @@ public class User extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         if (v == ivChooseShowPic) {
             showFileChooser();
+            buttonUpload.setVisibility(View.VISIBLE);
         }
         if(v == buttonUpload){
             uploadImage();
+            buttonUpload.setVisibility(View.GONE);
         }
         if(v == buttonView){
             ViewImage();

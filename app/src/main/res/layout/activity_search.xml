@@ -4,7 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#292929">
 
     <!-- Search input -->
     <EditText
@@ -12,7 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter name or username"
-        android:inputType="text" />
+        android:textColorHint="@color/white"
+        android:inputType="text"
+        android:textColor="@color/white"/>
 
     <!-- Search button -->
 
@@ -22,7 +25,9 @@
         android:id="@+id/searchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search" />
+        android:text="Search"
+        android:textStyle="bold"
+        android:background="@drawable/logoutbutton"/>
 
     <ListView
         android:id="@+id/searchResultsListView"
@@ -38,4 +43,38 @@
         android:visibility="gone" />
 
 
+    <LinearLayout
+        android:id="@+id/navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/customnavbar"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/home_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_people_alt_24"
+            android:background="@android:color/transparent"/>
+
+        <ImageButton
+            android:id="@+id/navSearchButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/baseline_search_24" />
+
+        <ImageButton
+            android:id="@+id/person_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_home_24"
+            android:background="@android:color/transparent"/>
+
+
+</LinearLayout>
 </LinearLayout>
