@@ -14,17 +14,27 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -47,6 +57,8 @@ public class User extends AppCompatActivity implements View.OnClickListener{
     private ImageView imageView;
     private Button buttonUpload;
     private Button buttonView;
+
+    private ListView lvUserWoofs;
     private ImageButton buttonToHowl;
     private ImageButton toLogin;
 
@@ -80,26 +92,13 @@ public class User extends AppCompatActivity implements View.OnClickListener{
             }
         });
 
-        //Moving back to login
-/*        toLogin=(ImageButton) findViewById(R.id.imageButtonReturnToLogin);
-        toLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(User.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });*/
-
-
-
-
         editTextId = findViewById(R.id.etID);
 
         ivChooseShowPic = findViewById(R.id.profilePic);
         buttonUpload = findViewById(R.id.buttonUpload);
         buttonView = findViewById(R.id.buttonView);
-
         imageView = findViewById(R.id.profilePic);
+
 
         //Getting username from login page and displaying
         Bundle extras = getIntent().getExtras();
@@ -110,6 +109,11 @@ public class User extends AppCompatActivity implements View.OnClickListener{
                 storeUsername=username;
             }
         }
+
+        //Users tweets
+        lvUserWoofs=findViewById(R.id.listView);
+        getJSON("https://lamp.ms.wits.ac.za/home/s2596852/specificUserTweetsP2.php?username=" + storeUsername);
+
 
         etFollowersCount =findViewById(R.id.followersCount);
         etFollowingCount =findViewById(R.id.followingCount);
@@ -124,6 +128,8 @@ public class User extends AppCompatActivity implements View.OnClickListener{
         getFollowingCount();
         getFollowerCount();
     }
+
+
 
     //When you click on the drawable you can pick a profile picture
     private void showFileChooser() {
@@ -197,57 +203,6 @@ public class User extends AppCompatActivity implements View.OnClickListener{
         ui.execute(bitmap);
     }
 
-  /*  private void viewImage() {
-        //EditText editTextId;
-        ImageView imageView;
-
-        //editTextId = findViewById(R.id.etID);
-        imageView = findViewById(R.id.profilePic);
-
-        String id = editTextId.getText().toString().trim();
-        class GetImage extends AsyncTask<String, Void, Bitmap> {
-            ProgressDialog loading;
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                loading = ProgressDialog.show(User.this, "Uploading...", null, true, true);
-            }
-
-            @Override
-            protected Bitmap doInBackground(String... params) {
-                String id = params[0];
-                String add = "https://lamp.ms.wits.ac.za/home/s2596852/getImage3.php?username=" + id;
-                URL url;
-                Bitmap image = null;
-                try {
-                    url = new URL(add);
-                    image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return image;
-            }
-
-            @Override
-            protected void onPostExecute(Bitmap bitmap) {
-                super.onPostExecute(bitmap);
-                loading.dismiss();
-                if (bitmap != null) {
-                    imageView.setImageBitmap(bitmap);
-                } else {
-                    imageView.setImageResource(R.drawable.baseline_person_24);
-                }
-            }
-        }
-
-        GetImage gi = new GetImage();
-        gi.execute(id);
-    }*/
-
-
     @Override
     public void onClick(View v) {
         if (v == ivChooseShowPic) {
@@ -318,8 +273,6 @@ public class User extends AppCompatActivity implements View.OnClickListener{
         GetImage gi = new GetImage();
         gi.execute(id);
     }
-
-
 
     private void getFollowingCount() {
         //String username = editTextId.getText().toString().trim();
@@ -441,5 +394,64 @@ public class User extends AppCompatActivity implements View.OnClickListener{
             });
             btnVisibility = true;
         }
+    }
+
+    //Code for user's tweets:
+    private void getJSON(final String urlWebService) {
+
+        class GetJSON extends AsyncTask<Void, Void, String> {
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                //Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                try {
+                    loadIntoListView(s);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            protected String doInBackground(Void... voids) {
+                try {
+                    URL url = new URL(urlWebService);
+                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                    StringBuilder sb = new StringBuilder();
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                    String json;
+                    while ((json = bufferedReader.readLine()) != null) {
+                        sb.append(json + "\n");
+                    }
+                    return sb.toString().trim();
+                } catch (Exception e) {
+                    return null;
+                }
+            }
+        }
+        GetJSON getJSON = new GetJSON();
+        getJSON.execute();
+    }
+
+    private void loadIntoListView(String json) throws JSONException {
+        JSONArray jsonArray = new JSONArray(json);
+        List<UserWoofItem> userWoofItems = new ArrayList<>();
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject obj = jsonArray.getJSONObject(i);
+            String userId = obj.getString("user_id");
+            String timestamp = obj.getString("created_at");
+            String howl = obj.getString("howl");
+            userWoofItems.add(new UserWoofItem(storeUsername, timestamp, howl));  // Use storeusername as the name
+        }
+
+        UserWoofAdapter userWoofAdapter = new UserWoofAdapter(this, R.layout.woof_item_layout, userWoofItems);
+        lvUserWoofs.setAdapter(userWoofAdapter);
     }
 }

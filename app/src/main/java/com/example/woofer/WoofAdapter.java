@@ -19,6 +19,8 @@ public class WoofAdapter extends RecyclerView.Adapter<WoofAdapter.WoofViewHolder
     private int layoutResourceId;
     private List<WoofItem> tweetItems;
 
+    private String storeUsername;
+
     public WoofAdapter(Context context, int layoutResourceId, List<WoofItem> tweetItems) {
         this.context = context;
         this.layoutResourceId = layoutResourceId;
