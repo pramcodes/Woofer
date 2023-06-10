@@ -2,11 +2,12 @@ package com.example.woofer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,21 +22,45 @@ import java.util.List;
 
 public class viewFriendsHowls extends AppCompatActivity{
 
-    String storeUsername;
+    private String StoreUsername;
     private ListView lvUserWoofs;
+    private ImageButton homeButton, nSearchButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_friends_howls);
 
-        String receivedText = getIntent().getStringExtra("textKey");
         //TextView textView = findViewById(R.id.getname);
         //textView.setText(receivedText);
 
+        Bundle extras = getIntent().getExtras();
+        StoreUsername = extras.getString("username");
+
+        homeButton = findViewById(R.id.homeButton);
+
+        nSearchButton = findViewById(R.id.searchButton);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent( viewFriendsHowls.this,User.class );
+                intent.putExtra("username", StoreUsername);
+                startActivity(intent);
+                finishAffinity();
+            }
+        });
+        nSearchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent( viewFriendsHowls.this,searchUser.class );
+                intent.putExtra("username", StoreUsername);
+                startActivity(intent);
+                finishAffinity();
+            }
+        });
 
         // Users tweets
         lvUserWoofs = findViewById(R.id.listView);
-        getJSON("https://lamp.ms.wits.ac.za/home/s2596852/showFriendsTweetsP2.php?username=" + receivedText);
+        getJSON("https://lamp.ms.wits.ac.za/home/s2596852/showFriendsTweetsP2.php?username=" + StoreUsername);
     }
 
     // Code for user's tweets

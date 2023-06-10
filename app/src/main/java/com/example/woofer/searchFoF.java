@@ -48,6 +48,7 @@ public class searchFoF extends AppCompatActivity {
     private Button searchButton;
     private LinearLayout cardContainer;
     private ImageButton homeButton, profileButton, nSearchButton;
+    private String StoreUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,9 @@ public class searchFoF extends AppCompatActivity {
         homeButton = findViewById(R.id.home_button);
         profileButton = findViewById(R.id.profile_button);
         nSearchButton = findViewById(R.id.navSearchButton);
+
+        Bundle extras = getIntent().getExtras();
+        StoreUsername = extras.getString("username");
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,25 +75,30 @@ public class searchFoF extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent( searchFoF.this,User.class );
-                intent.putExtra("username", "Leo123");
+                intent.putExtra("username", StoreUsername);
                 startActivity(intent);
+                finishAffinity();
             }
         });
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent( searchFoF.this,viewFriendsHowls.class );
-                intent.putExtra("username", "Levi_A");
+                intent.putExtra("username", StoreUsername);
                 startActivity(intent);
+                finishAffinity();
             }
         });
         nSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent( searchFoF.this,searchUser.class );
+                intent.putExtra("username", StoreUsername);
                 startActivity(intent);
+                finishAffinity();
             }
         });
+
 
     }
 

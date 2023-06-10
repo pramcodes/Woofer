@@ -105,7 +105,7 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/friendsButton"
+            android:id="@+id/homeButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -185,7 +185,7 @@
         app:srcCompat="@drawable/baseline_density_medium_24"
         android:onClick="onImageButtonClick"
         android:background="#292929"
-        android:tint="@color/white"/>
+        app:tint="@color/white" />
 
     <Button
         android:id="@+id/buttonLogout"

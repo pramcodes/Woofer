@@ -48,6 +48,7 @@ public class searchUser extends AppCompatActivity {
     private Button searchButton;
     private LinearLayout cardContainer;
     private ImageButton homeButton, profileButton, nSearchButton;
+    private String StoreUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,9 @@ public class searchUser extends AppCompatActivity {
         homeButton = findViewById(R.id.home_button);
         profileButton = findViewById(R.id.profile_button);
         nSearchButton = findViewById(R.id.navSearchButton);
+
+        Bundle extras = getIntent().getExtras();
+        StoreUsername = extras.getString("username");
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,22 +75,27 @@ public class searchUser extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent( searchUser.this,User.class );
-                intent.putExtra("username", "Leo123");
+                intent.putExtra("username", StoreUsername);
                 startActivity(intent);
+                finishAffinity();
             }
         });
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent( searchUser.this,User.class );
+                Intent intent= new Intent( searchUser.this,viewFriendsHowls.class );
+                intent.putExtra("username", StoreUsername);
                 startActivity(intent);
+                finishAffinity();
             }
         });
         nSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent( searchUser.this,searchFoF.class );
+                intent.putExtra("username", StoreUsername);
                 startActivity(intent);
+                finishAffinity();
             }
         });
 

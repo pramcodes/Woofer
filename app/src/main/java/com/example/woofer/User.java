@@ -14,7 +14,6 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -69,7 +68,7 @@ public class User extends AppCompatActivity implements View.OnClickListener{
 
     private Uri filePath;
 
-    private ImageButton logOutImageButton,SearchButton;
+    private ImageButton logOutImageButton,SearchButton ;
     private Button buttonLogOut;
     private boolean btnVisibility=false;
 
@@ -94,11 +93,13 @@ public class User extends AppCompatActivity implements View.OnClickListener{
             }
         });
 
+
         SearchButton=findViewById(R.id.searchButton);
         SearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent( User.this,searchFoF.class );
+                Intent intent= new Intent( User.this,searchUser.class );
+                intent.putExtra("username",storeUsername);
                 startActivity(intent);
             }
         });
@@ -117,14 +118,15 @@ public class User extends AppCompatActivity implements View.OnClickListener{
         editTextId = findViewById(R.id.etID);
 
         //Moving to friends page
-        toFriends = (ImageButton) findViewById(R.id.friendsButton);
+        toFriends = (ImageButton) findViewById(R.id.homeButton);
         toFriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String textToPass = editTextId.getText().toString();
                 Intent intent = new Intent(User.this, viewFriendsHowls.class);
-                intent.putExtra("textKey", textToPass);
+                intent.putExtra("username", textToPass);
                 startActivity(intent);
+                finishAffinity();
             }
         });
 
@@ -134,7 +136,7 @@ public class User extends AppCompatActivity implements View.OnClickListener{
 
         imageView = findViewById(R.id.profilePic);
 
-        //Getting username from login page and displaying
+        //Getting username from previous page and displaying
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {

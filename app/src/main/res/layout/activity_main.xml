@@ -20,7 +20,7 @@
 
 
         <ImageButton
-            android:id="@+id/homeButton"
+            android:id="@+id/friendsButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -39,7 +39,7 @@
             android:padding="8dp" />
 
         <ImageButton
-            android:id="@+id/friendsButton"
+            android:id="@+id/homeButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

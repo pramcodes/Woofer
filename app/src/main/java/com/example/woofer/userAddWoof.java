@@ -21,6 +21,7 @@ public class userAddWoof extends AppCompatActivity {
     EditText text;
 
     Button AddHowl;
+    private ImageButton friendsButton, nSearchButton;
 
 
     @Override
@@ -47,8 +48,33 @@ public class userAddWoof extends AppCompatActivity {
                 Intent intent= new Intent(userAddWoof.this, User.class);
                 intent.putExtra("username",storeUsername);
                 startActivity(intent);
+                finishAffinity();
             }
         });
+
+        friendsButton = findViewById(R.id.profile_button);
+
+        friendsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent( userAddWoof.this,viewFriendsHowls.class );
+                intent.putExtra("username", storeUsername);
+                startActivity(intent);
+                finishAffinity();
+            }
+        });
+
+        nSearchButton = findViewById(R.id.search_button);
+        nSearchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent( userAddWoof.this,searchFoF.class );
+                intent.putExtra("username", storeUsername);
+                startActivity(intent);
+                finishAffinity();
+            }
+        });
+
 
         AddHowl = (Button)findViewById(R.id.btnWoof);
         AddHowl.setOnClickListener(new View.OnClickListener() {
