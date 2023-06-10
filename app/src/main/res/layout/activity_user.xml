@@ -121,7 +121,7 @@
             android:src="@drawable/baseline_search_24" />
 
         <ImageButton
-            android:id="@+id/person_button"
+            android:id="@+id/home_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

@@ -164,7 +164,6 @@ public class User extends AppCompatActivity implements View.OnClickListener{
         Info.add(detail.processJSON(req,"lname"));
         Info.add(detail.processJSON(req,"email"));
         Info.add(detail.processJSON(req,"DOB"));
-
         editTextId.setText(Info.get(1));
 
         etFollowersCount =findViewById(R.id.followersCount);

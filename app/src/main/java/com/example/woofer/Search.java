@@ -37,7 +37,7 @@ public class Search extends AppCompatActivity {
 
         searchEditText = findViewById(R.id.searchEditText);
         searchButton = findViewById(R.id.searchButton);
-        searchResultsListView = findViewById(R.id.searchResultsListView);
+//        searchResultsListView = findViewById(R.id.searchResultsListView);
         noResultsTextView = findViewById(R.id.noResultsTextView);
 
 
@@ -53,7 +53,7 @@ public class Search extends AppCompatActivity {
             }
         });
 
-        ProfileButton=(ImageButton)findViewById(R.id.home_button);
+        ProfileButton=(ImageButton)findViewById(R.id.profile_button);
         ProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
