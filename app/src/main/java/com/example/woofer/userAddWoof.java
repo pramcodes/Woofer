@@ -18,7 +18,7 @@ public class userAddWoof extends AppCompatActivity {
     String storeUsername;
     ImageButton returnToUser;
 
-    EditText text;
+    EditText textHowl;
 
     Button AddHowl;
     private ImageButton friendsButton, nSearchButton;
@@ -80,8 +80,8 @@ public class userAddWoof extends AppCompatActivity {
         AddHowl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                text = (EditText) findViewById(R.id.etWoofContent);
-                String Howl = text.getText().toString();
+                textHowl = (EditText) findViewById(R.id.etWoofContent);
+                String Howl = textHowl.getText().toString();
 
                 Map<String,Object> Post = new HashMap<>();
                 Post.put("username",storeUsername);
@@ -91,6 +91,7 @@ public class userAddWoof extends AppCompatActivity {
                 String text = Req.postRequest();
                 Toast toast = Toast.makeText(getApplicationContext() , text, Toast.LENGTH_SHORT);
                 toast.show();
+                textHowl.setText("");
             }
         });
 

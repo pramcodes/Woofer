@@ -3,10 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#008494"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+
+        <ImageButton
+            android:id="@+id/toolbar_title"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:background="#008494"
+            android:scaleType="fitCenter"
+            android:src="@drawable/baseline_pets_24" />
+
+    </RelativeLayout>
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
         android:layout_above="@id/navigationBar"
         android:background="#292929"/>
 
@@ -17,7 +37,6 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:background="@drawable/customnavbar">
-
 
         <ImageButton
             android:id="@+id/friendsButton"

@@ -43,7 +43,7 @@ public class FollowingAdapter extends RecyclerView.Adapter<FollowingAdapter.View
         User user = followingList.get(position);
         holder.usernameTextView.setText(userDetails.getUsername());
 
-        // Set the appropriate text for the follow button
+        // Set the appropriate textHowl for the follow button
         //get whether user is following or not
        boolean isFollowing = false;
         if (isFollowing) {
@@ -58,7 +58,7 @@ public class FollowingAdapter extends RecyclerView.Adapter<FollowingAdapter.View
             boolean newFollowStatus = !isFollowing;
 
 
-            // Update the text of the follow button
+            // Update the textHowl of the follow button
             if (newFollowStatus) {
                 holder.followButton.setText("Unfollow");
             } else {

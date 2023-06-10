@@ -44,29 +44,6 @@
         android:text="Howl"
         android:background="@drawable/howlbutton"/>
 
-    <ImageButton
-        android:id="@+id/buttonChoose"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        android:layout_below="@id/etWoofContent"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="13dp"
-        android:layout_marginTop="15dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/baseline_image_24"
-        android:tint="@color/white"/>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/buttonChoose"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:id="@+id/navigation_bar"

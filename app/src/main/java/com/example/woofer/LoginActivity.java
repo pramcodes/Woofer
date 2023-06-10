@@ -75,10 +75,10 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
                         else {
-                            CharSequence text = "Incorrect password or username";
+                            CharSequence textHowl = "Incorrect password or username";
                             int duration = Toast.LENGTH_SHORT;
 
-                            Toast toast = Toast.makeText(getApplicationContext() , text, duration);
+                            Toast toast = Toast.makeText(getApplicationContext() , textHowl, duration);
                             toast.show();
                         }*/
 

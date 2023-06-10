@@ -51,14 +51,14 @@ public class FriendView extends AppCompatActivity {
             public void onClick(View v) {
                 if (isFollowing.value) {
                     // Unfollow the user
-                    // Update the button text and following status accordingly
+                    // Update the button textHowl and following status accordingly
                     followButton.setText("Follow");
                     howlsTextView.setVisibility(View.GONE);
                     isFollowing.value = false;
                     //update db
                 } else {
                     // Follow the user
-                    // Update the button text and following status accordingly
+                    // Update the button textHowl and following status accordingly
                     followButton.setText("Unfollow");
                     howlsTextView.setVisibility(View.VISIBLE);
                     isFollowing.value = true;
