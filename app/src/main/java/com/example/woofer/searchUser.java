@@ -68,7 +68,7 @@ public class searchUser extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String searchQuery = searchEditText.getText().toString();
-                new RetrieveUsernamesTask().execute(searchQuery);
+                new getUsername().execute(searchQuery);
             }
         });
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -100,17 +100,13 @@ public class searchUser extends AppCompatActivity {
         });
 
     }
-
-    private void addCardsToContainer(JSONArray usernames) {
+    private void cardView(JSONArray usernames) {
         cardContainer.removeAllViews();
-
         try {
             for (int i = 0; i < usernames.length(); i++) {
                 JSONObject usernameObject = usernames.getJSONObject(i);
                 String personName = usernameObject.getString("username");
-
                 View cardView = LayoutInflater.from(this).inflate(R.layout.activity_card_fof, cardContainer, false);
-
                 TextView usernameTextView = cardView.findViewById(R.id.usernameTextView);
                 Button addButton = cardView.findViewById(R.id.addButton);
                 TextView fSaved = cardView.findViewById(R.id.fSaved);
@@ -120,9 +116,9 @@ public class searchUser extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         String username = usernameTextView.getText().toString();
-                        String personName = "Leo123"; // Set the person name here
+                        String personName = StoreUsername;
                         fSaved.setText("Friend saved!");
-                        addToDifferentDatabase(personName, username);
+                        addFriend(personName, username);
                     }
                 });
                 cardContainer.addView(cardView);
@@ -131,45 +127,113 @@ public class searchUser extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-    private void addToDifferentDatabase(String personName, String username) {
-        new AddToDifferentDatabaseTask().execute(personName, username);
+    private void addFriend(String personName, String username) {
+        new addFriendComp().execute(personName, username);
+    }
+    private void removeVerification() {
+        try {
+            TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
+                public X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+                public void checkClientTrusted(X509Certificate[] certs, String authType) {}
+                public void checkServerTrusted(X509Certificate[] certs, String authType) {}
+            }};
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, trustAllCerts, new SecureRandom());
+            HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
+            HttpsURLConnection.setDefaultHostnameVerifier((hostname, session) -> true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private boolean isHostnameValid(String url) {
+        Pattern pattern = Pattern.compile("^https?://([^/?#]+)(?:[/?#]|$)");
+        Matcher matcher = pattern.matcher(url);
+        if (matcher.find()) {
+            String hostname = matcher.group(1);
+            try {
+                InetAddress address = InetAddress.getByName(hostname);
+                return address != null;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
     }
 
-    private class RetrieveUsernamesTask extends AsyncTask<String, Void, JSONArray> {
-
+    private class getUsername extends AsyncTask<String, Void, JSONArray> {
         @Override
         protected JSONArray doInBackground(String... params) {
             String searchQuery = params[0];
-            String url = "https://lamp.md.wits.ac.za/home/s2596852/searchUser.php?username=" + searchQuery;
+            String url = "https://146.141.21.92/home/s2596852/searchUser.php?username=" + searchQuery;
 
-            JSONArray response = null;
-            try {
-                response = makeHttpGetRequest(url);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
+            if (isHostnameValid(url)) {
+                try {
+                    JSONArray response = makeHttpGetRequest(url);
+                    return response;
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Toast.makeText(searchUser.this, "Invalid hostname", Toast.LENGTH_SHORT).show();
             }
-            return response;
-        }
 
+            return null;
+        }
         @Override
         protected void onPostExecute(JSONArray usernames) {
             if (usernames != null) {
-                addCardsToContainer(usernames);
+                cardView(usernames);
+            }
+        }
+    }
+    private void makeHttpPostRequest(String url, String parameters) throws IOException, JSONException {
+        HttpURLConnection link = null;
+        BufferedReader reader = null;
+        try {
+            URL requestUrl = new URL(url);
+            link = (HttpURLConnection) requestUrl.openConnection();
+            link.setRequestMethod("POST");
+            link.setDoOutput(true);
+            link.setDoInput(true);
+            link.getOutputStream().write(parameters.getBytes());
+            int responseCode = link.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                StringBuilder response = new StringBuilder();
+                reader = new BufferedReader(new InputStreamReader(link.getInputStream()));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+            }
+        }
+        finally
+        {
+            if (reader != null)
+            {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (link != null) {
+                link.disconnect();
             }
         }
     }
 
-    private class AddToDifferentDatabaseTask extends AsyncTask<String, Void, Void> {
-
+    private class addFriendComp extends AsyncTask<String,Void,Void> {
         @Override
         protected Void doInBackground(String... params) {
             String personName = params[0];
             String username = params[1];
 
-            String url = "https://lamp.ms.wits.ac.za/home/s2596852/addFriend.php";
+            String url = "https://146.141.21.92/home/s2596852/addFriend.php";
             String parameters = "personName=" + personName + "&username=" + username;
+            removeVerification();
 
             try {
                 URL requestUrl = new URL(url);
@@ -177,10 +241,10 @@ public class searchUser extends AppCompatActivity {
                 connection.setRequestMethod("POST");
                 connection.setDoOutput(true);
                 OutputStream outputStream = connection.getOutputStream();
-                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                writer.write(parameters);
-                writer.flush();
-                writer.close();
+                BufferedWriter wtr = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                wtr.write(parameters);
+                wtr.flush();
+                wtr.close();
                 outputStream.close();
                 connection.disconnect();
             } catch (IOException e) {
@@ -191,24 +255,61 @@ public class searchUser extends AppCompatActivity {
     }
 
     private JSONArray makeHttpGetRequest(String url) throws IOException, JSONException {
-        HttpURLConnection connection = null;
+        HttpURLConnection link = null;
         BufferedReader reader = null;
 
+        try {
             URL requestUrl = new URL(url);
-            connection = (HttpURLConnection) requestUrl.openConnection();
-            connection.setRequestMethod("GET");
+            link = (HttpURLConnection) requestUrl.openConnection();
 
-            int responseCode = connection.getResponseCode();
+            if (link instanceof HttpsURLConnection) {
+                ((HttpsURLConnection) link).setHostnameVerifier(new HostnameVerifier() {
+                    @Override
+                    public boolean verify(String hostname, SSLSession session) {
+                        return true;
+                    }
+                });
+                TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
+                    @Override
+                    public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {}
+                    @Override
+                    public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {}
+                    @Override
+                    public X509Certificate[] getAcceptedIssuers() {
+                        return new X509Certificate[0];
+                    }
+                }};
+                SSLContext sslContext = SSLContext.getInstance("TLS");
+                sslContext.init(null, trustAllCerts, new SecureRandom());
+                ((HttpsURLConnection) link).setSSLSocketFactory(sslContext.getSocketFactory());
+            }
+            link.setRequestMethod("GET");
+            int responseCode = link.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 StringBuilder response = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                reader = new BufferedReader(new InputStreamReader(link.getInputStream()));
                 String line;
                 while ((line = reader.readLine()) != null) {
                     response.append(line);
                 }
                 return new JSONArray(response.toString());
             }
-            return null;
+        } catch (NoSuchAlgorithmException | KeyManagementException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (link != null) {
+                link.disconnect();
+            }
+        }
+
+        return null;
     }
 }
 
