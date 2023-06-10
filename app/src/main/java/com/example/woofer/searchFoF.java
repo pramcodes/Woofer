@@ -68,7 +68,7 @@ public class searchFoF extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String searchQuery = searchEditText.getText().toString();
-                new RetrieveUsernamesTask().execute(searchQuery);
+                new GetUsername().execute(searchQuery);
             }
         });
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -98,11 +98,8 @@ public class searchFoF extends AppCompatActivity {
                 finishAffinity();
             }
         });
-
-
     }
-
-    private void addCardsToContainer(JSONArray usernames) {
+    private void AddView(JSONArray usernames) {
         cardContainer.removeAllViews();
 
         try {
@@ -121,24 +118,21 @@ public class searchFoF extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         String username = usernameTextView.getText().toString();
-                        String personName = "Leo123"; // Set the person name here
+                        String friendName = StoreUsername; // Set the person name here
                         fSaved.setText("Friend saved!");
-                        addToDifferentDatabase(personName, username);
+                        AddFriend(friendName, username);
                     }
                 });
-
-
                 cardContainer.addView(cardView);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
-
-    private void addToDifferentDatabase(String personName, String username) {
-        new AddToDifferentDatabaseTask().execute(personName, username);
+    private void AddFriend(String friendName, String username) {
+        new AddFriendExecute().execute(friendName, username);
     }
-    private void disableSSLCertificateVerification() {
+    private void RemoveVerification() {
         try {
             TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
                 public X509Certificate[] getAcceptedIssuers() {
@@ -160,8 +154,7 @@ public class searchFoF extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-    private boolean isHostnameValid(String url) {
+    private boolean HostValidation(String url) {
         Pattern pattern = Pattern.compile("^https?://([^/?#]+)(?:[/?#]|$)");
         Matcher matcher = pattern.matcher(url);
         if (matcher.find()) {
@@ -175,17 +168,15 @@ public class searchFoF extends AppCompatActivity {
         }
         return false;
     }
-
-    private class RetrieveUsernamesTask extends AsyncTask<String, Void, JSONArray> {
-
+    private class GetUsername extends AsyncTask<String, Void, JSONArray> {
         @Override
         protected JSONArray doInBackground(String... params) {
             String searchQuery = params[0];
             String url = "https://146.141.21.92/home/s2596852/showFriends2.php?username=" + searchQuery;
 
-            if (isHostnameValid(url)) {
+            if (HostValidation(url)) {
                 try {
-                    JSONArray response = makeHttpGetRequest(url);
+                    JSONArray response = GetRequest(url);
                     return response;
                 } catch (IOException | JSONException e) {
                     e.printStackTrace();
@@ -193,39 +184,35 @@ public class searchFoF extends AppCompatActivity {
             } else {
                 Toast.makeText(searchFoF.this, "Invalid hostname", Toast.LENGTH_SHORT).show();
             }
-
             return null;
         }
-
         @Override
         protected void onPostExecute(JSONArray usernames) {
             if (usernames != null) {
-                addCardsToContainer(usernames);
+                AddView(usernames);
             }
         }
     }
-    private void makeHttpPostRequest(String url, String parameters) throws IOException, JSONException {
-        HttpURLConnection connection = null;
+    private void PostRequest(String url, String parameters) throws IOException, JSONException {
+        HttpURLConnection link = null;
         BufferedReader reader = null;
-
         try {
             URL requestUrl = new URL(url);
-            connection = (HttpURLConnection) requestUrl.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setDoOutput(true);
-            connection.setDoInput(true);
+            link = (HttpURLConnection) requestUrl.openConnection();
+            link.setRequestMethod("POST");
+            link.setDoOutput(true);
+            link.setDoInput(true);
 
-            connection.getOutputStream().write(parameters.getBytes());
+            link.getOutputStream().write(parameters.getBytes());
 
-            int responseCode = connection.getResponseCode();
+            int responseCode = link.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 StringBuilder response = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                reader = new BufferedReader(new InputStreamReader(link.getInputStream()));
                 String line;
                 while ((line = reader.readLine()) != null) {
                     response.append(line);
                 }
-
             }
         } finally {
             if (reader != null) {
@@ -235,15 +222,12 @@ public class searchFoF extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-
-            if (connection != null) {
-                connection.disconnect();
+            if (link != null) {
+                link.disconnect();
             }
         }
     }
-
-    private class AddToDifferentDatabaseTask extends AsyncTask<String, Void, Void> {
-
+    private class AddFriendExecute extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... params) {
             String personName = params[0];
@@ -252,7 +236,7 @@ public class searchFoF extends AppCompatActivity {
             String url = "https://146.141.21.92/home/s2596852/addFriend.php";
             String parameters = "personName=" + personName + "&username=" + username;
 
-            disableSSLCertificateVerification();
+            RemoveVerification();
 
             try {
                 URL requestUrl = new URL(url);
@@ -284,16 +268,16 @@ public class searchFoF extends AppCompatActivity {
         }
     }
 
-    private JSONArray makeHttpGetRequest(String url) throws IOException, JSONException {
-        HttpURLConnection connection = null;
+    private JSONArray GetRequest(String url) throws IOException, JSONException {
+        HttpURLConnection link = null;
         BufferedReader reader = null;
 
         try {
             URL requestUrl = new URL(url);
-            connection = (HttpURLConnection) requestUrl.openConnection();
+            link = (HttpURLConnection) requestUrl.openConnection();
 
-            if (connection instanceof HttpsURLConnection) {
-                ((HttpsURLConnection) connection).setHostnameVerifier(new HostnameVerifier() {
+            if (link instanceof HttpsURLConnection) {
+                ((HttpsURLConnection) link).setHostnameVerifier(new HostnameVerifier() {
                     @Override
                     public boolean verify(String hostname, SSLSession session) {
                         return true;
@@ -301,35 +285,27 @@ public class searchFoF extends AppCompatActivity {
                 });
                 TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
                     @Override
-                    public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-                    }
-
+                    public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {}
                     @Override
-                    public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-                    }
-
+                    public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {}
                     @Override
                     public X509Certificate[] getAcceptedIssuers() {
                         return new X509Certificate[0];
                     }
                 }};
-
                 SSLContext sslContext = SSLContext.getInstance("TLS");
                 sslContext.init(null, trustAllCerts, new SecureRandom());
-                ((HttpsURLConnection) connection).setSSLSocketFactory(sslContext.getSocketFactory());
+                ((HttpsURLConnection) link).setSSLSocketFactory(sslContext.getSocketFactory());
             }
-
-            connection.setRequestMethod("GET");
-
-            int responseCode = connection.getResponseCode();
+            link.setRequestMethod("GET");
+            int responseCode = link.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 StringBuilder response = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                reader = new BufferedReader(new InputStreamReader(link.getInputStream()));
                 String line;
                 while ((line = reader.readLine()) != null) {
                     response.append(line);
                 }
-
                 return new JSONArray(response.toString());
             }
         } catch (NoSuchAlgorithmException | KeyManagementException e) {
@@ -342,12 +318,10 @@ public class searchFoF extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-
-            if (connection != null) {
-                connection.disconnect();
+            if (link != null) {
+                link.disconnect();
             }
         }
-
         return null;
     }
 }
