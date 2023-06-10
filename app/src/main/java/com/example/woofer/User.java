@@ -310,9 +310,11 @@ public class User extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         if (v == ivChooseShowPic) {
             showFileChooser();
+            buttonUpload.setVisibility(View.VISIBLE);
         }
         if(v == buttonUpload){
             uploadImage();
+            buttonUpload.setVisibility(View.INVISIBLE);
         }
         if(v == buttonView){
             ViewImage();
