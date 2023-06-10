@@ -38,6 +38,7 @@
             android:layout_marginBottom="30dp"
             android:layout_marginTop="50dp"
             android:text="Followers: 10"
+            android:textSize="16dp"
             android:textColor="@color/white"
             android:textStyle="bold" />
 
@@ -49,6 +50,7 @@
             android:layout_marginTop="50dp"
             android:text="Following: 50"
             android:textColor="@color/white"
+            android:textSize="16dp"
             android:textStyle="bold" />
 
     </LinearLayout>

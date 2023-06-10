@@ -49,7 +49,6 @@ public class User extends AppCompatActivity implements View.OnClickListener{
     TextView etFollowingCount;
 
     public static final String UPLOAD_URL = "https://lamp.ms.wits.ac.za/home/s2596852/uploadidk.php";
-    //public static final String UPLOAD_URL = "https://lamp.ms.wits.ac.za/home/s2572730/uploadidk.php";
     public static final String UPLOAD_KEY = "image";
     public static final String TAG = "MY MESSAGE";
 
@@ -62,6 +61,7 @@ public class User extends AppCompatActivity implements View.OnClickListener{
     private ListView lvUserWoofs;
     private ImageButton buttonToHowl;
     private ImageButton toLogin;
+    private ImageButton toFriends;
 
     private ImageView ivChooseShowPic;
 
@@ -84,7 +84,7 @@ public class User extends AppCompatActivity implements View.OnClickListener{
         buttonLogOut=findViewById(R.id.buttonLogout);
 
         //Moving to howls page
-        buttonToHowl=(ImageButton) findViewById(R.id.imageButtonAdd);
+        buttonToHowl=findViewById(R.id.imageButtonAdd);
         buttonToHowl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,7 +94,7 @@ public class User extends AppCompatActivity implements View.OnClickListener{
             }
         });
 
-        SearchButton=(ImageButton)findViewById(R.id.searchButton);
+        SearchButton=findViewById(R.id.searchButton);
         SearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,7 +104,7 @@ public class User extends AppCompatActivity implements View.OnClickListener{
         });
 
         //Moving back to login
-/*        toLogin=(ImageButton) findViewById(R.id.imageButtonReturnToLogin);
+/*        toLogin=findViewById(R.id.imageButtonReturnToLogin);
         toLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,9 +114,19 @@ public class User extends AppCompatActivity implements View.OnClickListener{
         });*/
 
 
-
-
         editTextId = findViewById(R.id.etID);
+
+        //Moving to friends page
+        toFriends = (ImageButton) findViewById(R.id.friendsButton);
+        toFriends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String textToPass = editTextId.getText().toString();
+                Intent intent = new Intent(User.this, viewFriendsHowls.class);
+                intent.putExtra("textKey", textToPass);
+                startActivity(intent);
+            }
+        });
 
         ivChooseShowPic = findViewById(R.id.profilePic);
         buttonUpload = findViewById(R.id.buttonUpload);
@@ -346,7 +356,6 @@ public class User extends AppCompatActivity implements View.OnClickListener{
             protected Bitmap doInBackground(String... params) {
                 String id = params[0];
                 String add = "https://lamp.ms.wits.ac.za/home/s2596852/getImageidk.php?id="+id;
-                //String add = "https://lamp.ms.wits.ac.za/home/s2572730/getImageidk.php?id="+id;
                 URL url = null;
                 Bitmap image = null;
                 try {
