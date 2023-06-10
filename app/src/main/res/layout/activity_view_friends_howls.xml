@@ -7,7 +7,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#008494"
+        android:background="@drawable/customnavbar"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
 
@@ -16,7 +16,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerInParent="true"
-            android:background="#008494"
+            android:background="@drawable/customnavbar"
             android:scaleType="fitCenter"
             android:src="@drawable/baseline_pets_24" />
 

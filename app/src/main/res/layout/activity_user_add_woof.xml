@@ -9,14 +9,14 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#008494">
+        android:background="@drawable/customnavbar">
 
         <ImageButton
             android:id="@+id/toolbar_title"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerInParent="true"
-            android:background="#008494"
+            android:background="@drawable/customnavbar"
             android:src="@drawable/baseline_pets_24" />
 
 
@@ -33,17 +33,19 @@
         android:textColor="@color/white"
         android:textSize="18sp" />
 
+
     <Button
         android:id="@+id/btnWoof"
-        android:layout_width="wrap_content"
+        android:layout_width="91dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/etWoofContent"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Howl"
-        android:background="@drawable/howlbutton"/>
-
+        android:layout_marginStart="307dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="13dp"
+        android:background="@drawable/howlbutton"
+        android:text="Howl" />
 
     <LinearLayout
         android:id="@+id/navigation_bar"

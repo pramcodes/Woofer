@@ -19,9 +19,9 @@
         android:id="@+id/searchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/addwoofthings"
         android:text="Search"
-        android:textStyle="bold"
-        android:background="@drawable/logoutbutton"/>
+        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
