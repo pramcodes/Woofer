@@ -45,7 +45,10 @@
             android:exported="false" />
         <activity
             android:name=".searchFoF"
-            android:exported="true" />
+            android:exported="false" />
+        <activity
+            android:name=".searchUser"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -42,7 +42,7 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-public class searchFoF extends AppCompatActivity {
+public class searchUser extends AppCompatActivity {
 
     private EditText searchEditText;
     private Button searchButton;
@@ -52,7 +52,7 @@ public class searchFoF extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_us_main);
 
         searchEditText = findViewById(R.id.searchEditText);
         searchButton = findViewById(R.id.searchButton);
@@ -70,7 +70,7 @@ public class searchFoF extends AppCompatActivity {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent( searchFoF.this,User.class );
+                Intent intent= new Intent( searchUser.this,User.class );
                 intent.putExtra("username", "Leo123");
                 startActivity(intent);
             }
@@ -78,14 +78,14 @@ public class searchFoF extends AppCompatActivity {
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent( searchFoF.this,User.class );
+                Intent intent= new Intent( searchUser.this,User.class );
                 startActivity(intent);
             }
         });
         nSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent( searchFoF.this,searchUser.class );
+                Intent intent= new Intent( searchUser.this,searchFoF.class );
                 startActivity(intent);
             }
         });
@@ -171,7 +171,7 @@ public class searchFoF extends AppCompatActivity {
         @Override
         protected JSONArray doInBackground(String... params) {
             String searchQuery = params[0];
-            String url = "https://146.141.21.92/home/s2596852/showFriends.php?username=" + searchQuery;
+            String url = "https://146.141.21.92/home/s2596852/searchUser.php?username=" + searchQuery;
 
             if (isHostnameValid(url)) {
                 try {
@@ -181,7 +181,7 @@ public class searchFoF extends AppCompatActivity {
                     e.printStackTrace();
                 }
             } else {
-                Toast.makeText(searchFoF.this, "Invalid hostname", Toast.LENGTH_SHORT).show();
+                Toast.makeText(searchUser.this, "Invalid hostname", Toast.LENGTH_SHORT).show();
             }
 
             return null;
