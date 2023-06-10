@@ -10,11 +10,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Search extends AppCompatActivity {
     private EditText searchEditText;
@@ -23,6 +26,8 @@ public class Search extends AppCompatActivity {
     private List<User> searchResults;
     private ArrayAdapter<User> searchResultsAdapter;
     private TextView noResultsTextView;
+
+    private ImageButton ProfileButton;
 
 
     @Override
@@ -46,8 +51,16 @@ public class Search extends AppCompatActivity {
                 String searchTerm = searchEditText.getText().toString().trim(); //gets term being searched for
                 performSearch(searchTerm);
             }
+        });
 
-    });
+        ProfileButton=(ImageButton)findViewById(R.id.home_button);
+        ProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent( Search.this,User.class );
+                startActivity(intent);
+            }
+        });
 
         searchResultsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -62,20 +75,18 @@ public class Search extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
-
-
-
-
     }
     private void performSearch(String searchTerm) {
+        //Searching in the database (incomplete code)
+        Map<String,Object> name = new HashMap<>();
+        name.put(searchTerm,"username");
+        Requests search = new Requests(name,"https://lamp.ms.wits.ac.za/home/s2596852/searchUser.php");
+        String Result = search.getRequest();
+
+
+
         // Clear previous search results
-        searchResults.clear();
+        //searchResults.clear();
 
         // Perform search operation and populate the searchResults list
 

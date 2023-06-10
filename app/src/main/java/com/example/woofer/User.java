@@ -58,7 +58,7 @@ public class User extends AppCompatActivity implements View.OnClickListener{
 
     private Uri filePath;
 
-    private ImageButton logOutImageButton;
+    private ImageButton logOutImageButton,SearchButton;
     private Button buttonLogOut;
     private boolean btnVisibility=false;
 
@@ -78,6 +78,15 @@ public class User extends AppCompatActivity implements View.OnClickListener{
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(User.this, userAddWoof.class);
+                startActivity(intent);
+            }
+        });
+
+        SearchButton=(ImageButton)findViewById(R.id.searchButton);
+        SearchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent( User.this,Search.class );
                 startActivity(intent);
             }
         });
