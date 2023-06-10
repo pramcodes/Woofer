@@ -120,7 +120,7 @@ public class searchUser extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         String username = usernameTextView.getText().toString();
-                        String personName = "Leo123"; // Set the person name here
+                        String personName = StoreUsername; // Set the person name here
                         fSaved.setText("Friend saved!");
                         addToDifferentDatabase(personName, username);
                     }
