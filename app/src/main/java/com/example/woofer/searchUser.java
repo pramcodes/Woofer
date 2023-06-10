@@ -125,54 +125,14 @@ public class searchUser extends AppCompatActivity {
                         addToDifferentDatabase(personName, username);
                     }
                 });
-
-
                 cardContainer.addView(cardView);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
-
     private void addToDifferentDatabase(String personName, String username) {
         new AddToDifferentDatabaseTask().execute(personName, username);
-    }
-    private void disableSSLCertificateVerification() {
-        try {
-            TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
-                public X509Certificate[] getAcceptedIssuers() {
-                    return null;
-                }
-
-                public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                }
-
-                public void checkServerTrusted(X509Certificate[] certs, String authType) {
-                }
-            }};
-
-            SSLContext sslContext = SSLContext.getInstance("TLS");
-            sslContext.init(null, trustAllCerts, new SecureRandom());
-            HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
-            HttpsURLConnection.setDefaultHostnameVerifier((hostname, session) -> true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private boolean isHostnameValid(String url) {
-        Pattern pattern = Pattern.compile("^https?://([^/?#]+)(?:[/?#]|$)");
-        Matcher matcher = pattern.matcher(url);
-        if (matcher.find()) {
-            String hostname = matcher.group(1);
-            try {
-                InetAddress address = InetAddress.getByName(hostname);
-                return address != null;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return false;
     }
 
     private class RetrieveUsernamesTask extends AsyncTask<String, Void, JSONArray> {
@@ -180,63 +140,23 @@ public class searchUser extends AppCompatActivity {
         @Override
         protected JSONArray doInBackground(String... params) {
             String searchQuery = params[0];
-            String url = "https://146.141.21.92/home/s2596852/searchUser.php?username=" + searchQuery;
+            String url = "https://lamp.md.wits.ac.za/home/s2596852/searchUser.php?username=" + searchQuery;
 
-            if (isHostnameValid(url)) {
-                try {
-                    JSONArray response = makeHttpGetRequest(url);
-                    return response;
-                } catch (IOException | JSONException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                Toast.makeText(searchUser.this, "Invalid hostname", Toast.LENGTH_SHORT).show();
+            JSONArray response = null;
+            try {
+                response = makeHttpGetRequest(url);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
             }
-
-            return null;
+            return response;
         }
 
         @Override
         protected void onPostExecute(JSONArray usernames) {
             if (usernames != null) {
                 addCardsToContainer(usernames);
-            }
-        }
-    }
-    private void makeHttpPostRequest(String url, String parameters) throws IOException, JSONException {
-        HttpURLConnection connection = null;
-        BufferedReader reader = null;
-
-        try {
-            URL requestUrl = new URL(url);
-            connection = (HttpURLConnection) requestUrl.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setDoOutput(true);
-            connection.setDoInput(true);
-
-            connection.getOutputStream().write(parameters.getBytes());
-
-            int responseCode = connection.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                StringBuilder response = new StringBuilder();
-                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    response.append(line);
-                }
-
-            }
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if (connection != null) {
-                connection.disconnect();
             }
         }
     }
@@ -248,33 +168,20 @@ public class searchUser extends AppCompatActivity {
             String personName = params[0];
             String username = params[1];
 
-            String url = "https://146.141.21.92/home/s2596852/addFriend.php";
+            String url = "https://lamp.ms.wits.ac.za/home/s2596852/addFriend.php";
             String parameters = "personName=" + personName + "&username=" + username;
-
-            disableSSLCertificateVerification();
 
             try {
                 URL requestUrl = new URL(url);
                 HttpsURLConnection connection = (HttpsURLConnection) requestUrl.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setDoOutput(true);
-
                 OutputStream outputStream = connection.getOutputStream();
                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
                 writer.write(parameters);
                 writer.flush();
                 writer.close();
                 outputStream.close();
-
-                int responseCode = connection.getResponseCode();
-                if (responseCode == HttpsURLConnection.HTTP_OK)
-                {
-
-                }
-                else
-                {
-
-                }
                 connection.disconnect();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -287,37 +194,8 @@ public class searchUser extends AppCompatActivity {
         HttpURLConnection connection = null;
         BufferedReader reader = null;
 
-        try {
             URL requestUrl = new URL(url);
             connection = (HttpURLConnection) requestUrl.openConnection();
-
-            if (connection instanceof HttpsURLConnection) {
-                ((HttpsURLConnection) connection).setHostnameVerifier(new HostnameVerifier() {
-                    @Override
-                    public boolean verify(String hostname, SSLSession session) {
-                        return true;
-                    }
-                });
-                TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
-                    @Override
-                    public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-                    }
-
-                    @Override
-                    public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-                    }
-
-                    @Override
-                    public X509Certificate[] getAcceptedIssuers() {
-                        return new X509Certificate[0];
-                    }
-                }};
-
-                SSLContext sslContext = SSLContext.getInstance("TLS");
-                sslContext.init(null, trustAllCerts, new SecureRandom());
-                ((HttpsURLConnection) connection).setSSLSocketFactory(sslContext.getSocketFactory());
-            }
-
             connection.setRequestMethod("GET");
 
             int responseCode = connection.getResponseCode();
@@ -328,26 +206,9 @@ public class searchUser extends AppCompatActivity {
                 while ((line = reader.readLine()) != null) {
                     response.append(line);
                 }
-
                 return new JSONArray(response.toString());
             }
-        } catch (NoSuchAlgorithmException | KeyManagementException e) {
-            e.printStackTrace();
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if (connection != null) {
-                connection.disconnect();
-            }
-        }
-
-        return null;
+            return null;
     }
 }
 
