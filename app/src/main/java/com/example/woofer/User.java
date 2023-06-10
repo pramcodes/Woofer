@@ -89,6 +89,7 @@ public class User extends AppCompatActivity implements View.OnClickListener{
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(User.this, userAddWoof.class);
+                intent.putExtra("username",storeUsername);
                 startActivity(intent);
             }
         });
@@ -97,7 +98,7 @@ public class User extends AppCompatActivity implements View.OnClickListener{
         SearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent( User.this,Search.class );
+                Intent intent= new Intent( User.this,searchFoF.class );
                 startActivity(intent);
             }
         });

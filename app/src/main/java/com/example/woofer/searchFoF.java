@@ -78,7 +78,8 @@ public class searchFoF extends AppCompatActivity {
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent( searchFoF.this,User.class );
+                Intent intent= new Intent( searchFoF.this,viewFriendsHowls.class );
+                intent.putExtra("username", "Levi_A");
                 startActivity(intent);
             }
         });
