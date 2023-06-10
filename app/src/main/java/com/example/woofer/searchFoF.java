@@ -1,11 +1,13 @@
 package com.example.woofer;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,16 +47,18 @@ public class searchFoF extends AppCompatActivity {
     private EditText searchEditText;
     private Button searchButton;
     private LinearLayout cardContainer;
-
+    private ImageButton homeButton, profileButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fof_main);
+        setContentView(R.layout.activity_search);
 
         searchEditText = findViewById(R.id.searchEditText);
         searchButton = findViewById(R.id.searchButton);
         cardContainer = findViewById(R.id.cardContainer);
+        homeButton = findViewById(R.id.home_button);
+        profileButton = findViewById(R.id.profile_button);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +66,22 @@ public class searchFoF extends AppCompatActivity {
                 new RetrieveUsernamesTask().execute(searchQuery);
             }
         });
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent( searchFoF.this,User.class );
+                intent.putExtra("username", "Leo123");
+                startActivity(intent);
+            }
+        });
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent( searchFoF.this,User.class );
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void addCardsToContainer(JSONArray usernames) {

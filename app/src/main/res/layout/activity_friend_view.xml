@@ -61,7 +61,7 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/home_button"
+            android:id="@+id/profile_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -79,7 +79,7 @@
             android:background="#32527B" />
 
         <ImageButton
-            android:id="@+id/person_button"
+            android:id="@+id/home_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

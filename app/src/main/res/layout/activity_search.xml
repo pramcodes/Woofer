@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- search_page.xml -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -7,7 +6,6 @@
     android:orientation="vertical"
     android:background="#292929">
 
-    <!-- Search input -->
     <EditText
         android:id="@+id/searchEditText"
         android:layout_width="match_parent"
@@ -17,10 +15,6 @@
         android:inputType="text"
         android:textColor="@color/white"/>
 
-    <!-- Search button -->
-
-    <!-- Search results list -->
-
     <Button
         android:id="@+id/searchButton"
         android:layout_width="wrap_content"
@@ -29,11 +23,17 @@
         android:textStyle="bold"
         android:background="@drawable/logoutbutton"/>
 
-    <ListView
-        android:id="@+id/searchResultsListView"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1" >
+    <LinearLayout
+        android:id="@+id/cardContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+</ScrollView>
+
 
     <TextView
         android:id="@+id/noResultsTextView"
@@ -52,7 +52,7 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/home_button"
+            android:id="@+id/profile_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -68,7 +68,7 @@
             android:src="@drawable/baseline_search_24" />
 
         <ImageButton
-            android:id="@+id/person_button"
+            android:id="@+id/home_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

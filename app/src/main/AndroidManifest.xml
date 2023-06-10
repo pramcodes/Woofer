@@ -44,6 +44,9 @@
             android:name=".User"
             android:exported="false" />
         <activity
+            android:name=".searchFoF"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
