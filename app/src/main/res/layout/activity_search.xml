@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:text="Search"
         android:textStyle="bold"
-        android:background="@drawable/logoutbutton"/>
+        android:background="@drawable/howlbutton"/>
 
     <ScrollView
         android:layout_width="match_parent"

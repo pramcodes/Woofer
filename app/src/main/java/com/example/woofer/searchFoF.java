@@ -181,7 +181,7 @@ public class searchFoF extends AppCompatActivity {
         @Override
         protected JSONArray doInBackground(String... params) {
             String searchQuery = params[0];
-            String url = "https://146.141.21.92/home/s2596852/showFriends.php?username=" + searchQuery;
+            String url = "https://146.141.21.92/home/s2596852/showFriends2.php?username=" + searchQuery;
 
             if (isHostnameValid(url)) {
                 try {
