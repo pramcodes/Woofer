@@ -253,7 +253,8 @@ public class SignUpActivity1 extends AppCompatActivity {
 
 
                         //Intent intent = new Intent(SignUpActivity1.this, User.class);
-                        Intent intent = new Intent(SignUpActivity1.this, LoginActivity.class);
+                        Intent intent = new Intent(SignUpActivity1.this, User.class);
+                        intent.putExtra("username",username.getText().toString());
                         startActivity(intent);
                     }
                 }
