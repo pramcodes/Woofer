@@ -16,6 +16,9 @@ Woofer is a social media application designed for mobile devices. It offers a pl
 
 - **Feed Posting:**
   - Share updates, posts, and multimedia content on a centralized feed that reaches all your followers.
+ 
+## Technologies used
+Made use of Android studio to build the java and run the app in the android emulator. PHP was used to make the API endpoints to emable database access from the application. We used mySQL to setup the database.
 
 ## Code Structure
 
